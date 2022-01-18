@@ -13,7 +13,7 @@ export const getMeals = (filter = {}) => {
   const mealsRef = collection(db, 'meals');
   const mealsQuery = query(
     mealsRef,
-    where('eatFor', '==', filter.eatFor || 'lunch'),
+    where('eatFor', '==', filter.time || 'lunch'),
     where('forChild', '==', true),
     orderBy('name')
   );

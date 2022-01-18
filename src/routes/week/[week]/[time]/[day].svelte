@@ -25,8 +25,7 @@
     }
   });
 
-  const onChange = (meal) => (e) => {
-    console.log('🛎 ', 'onChange', meal);
+  const onChange = (meal) => () => {
     if (!meal) return;
     const icon = getIcon(meal.category);
     // setDoc(
@@ -65,11 +64,19 @@
 </AppBar>
 
 <Content>
-  <ul>
-    {#each $meals as meal, i}
-      <li on:click={onChange(meal)}>
-        {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
-      </li>
-    {/each}
-  </ul>
+  <div class="max-w-sm mx-auto">
+    <a href="/add" class="btn btn-ghost mr-0">Crear comida</a>
+    <ul class="menu max-h-full border bg-base-300 rounded-box">
+      {#each $meals as meal}
+        <li
+          on:click={onChange(meal)}
+          class={weekPlan[dayIndex]?.[time]?.id === meal.id && 'bg-gray-800'}
+        >
+          <a href={''}>
+            {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
+          </a>
+        </li>
+      {/each}
+    </ul>
+  </div>
 </Content>
