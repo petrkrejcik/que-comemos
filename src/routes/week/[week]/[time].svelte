@@ -105,7 +105,7 @@
             {/if}
           {:else}
             <div
-              class="w-32 h-full bg-slate-200 dark:bg-slate-700 rounded animate-pulse"
+              class="w-44 h-full bg-slate-200 dark:bg-slate-700 rounded animate-pulse"
             />
           {/if}
         </div>

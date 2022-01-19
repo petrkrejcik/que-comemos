@@ -1,23 +1,5 @@
-<script context="module">
-  import { getWeekId } from '$lib/date';
-  import { authStore } from '$lib/auth/firebaseAuth';
-
-  export async function load() {
-    if (authStore.firebaseControlled && !authStore.isLogged) {
-      console.log('🛎 ', 'not logged, no redirect');
-      return {};
-    }
-    // Redirect to main page if don't know if a user is logged in yet
-    // User will see skeleton until we know wheter he is logged in or not
-    // Later we redirect him to login again eventually
-    return {
-      status: 301,
-      redirect: `/week/${getWeekId(0)}/lunch`
-    };
-  }
-</script>
-
 <script>
+  import { authStore } from '$lib/auth/firebaseAuth';
   import { signInWithPopup } from 'firebase/auth';
   import { auth, authProvider } from '$lib/firebase';
   import { browser } from '$app/env';
@@ -25,8 +7,7 @@
 
   $: user = $authStore.user;
   $: if (browser && user) {
-    console.log('🛎 ', 'redirect', history.state?.referer || '/');
-    // goto(history.state?.referer || '/');
+    goto(history.state?.referer || '/');
   }
 
   const login = () => {
