@@ -5,6 +5,7 @@
   import AppBar from '$lib/AppBar.svelte';
   import Content from '$lib/Content.svelte';
   import { CATEGORIES } from '$lib/meal';
+  import BackButton from '$lib/backButton.svelte';
 
   const meal = writable({
     name: '',
@@ -24,7 +25,9 @@
   ];
 </script>
 
-<AppBar />
+<AppBar>
+  <BackButton />
+</AppBar>
 
 <Content>
   <form on:submit|preventDefault={onSubmit} class="flex flex-col form-control">

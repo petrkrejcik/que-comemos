@@ -6,6 +6,7 @@
   import AppBar from '$lib/AppBar.svelte';
   import Content from '$lib/Content.svelte';
   import { getIcon } from '$lib/meal';
+  import BackButton from '$lib/backButton.svelte';
 
   let dayIndex = `d${$page.params.day}`;
   let week = $page.params.week;
@@ -58,16 +59,63 @@
   };
 </script>
 
-<AppBar class="flex justify-between">
-  <!-- <Button on:click={() => navigate('/')} icon="arrow_back" text color="white" /> -->
-  <!-- <Button on:click={() => navigate('/add')} icon="add" text color="white" /> -->
+<AppBar>
+  <BackButton />
 </AppBar>
 
 <Content>
   <div class="max-w-sm mx-auto">
     <a href="/add" class="btn btn-ghost mr-0">Crear comida</a>
-    <ul class="menu max-h-full border bg-base-300 rounded-box">
+    <ul class="menu border bg-base-300 rounded-box overflow-auto">
       {#each $meals as meal}
+        <li
+          on:click={onChange(meal)}
+          class={weekPlan[dayIndex]?.[time]?.id === meal.id && 'bg-gray-800'}
+        >
+          <a href={''}>
+            {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
+          </a>
+        </li>
+        <li
+          on:click={onChange(meal)}
+          class={weekPlan[dayIndex]?.[time]?.id === meal.id && 'bg-gray-800'}
+        >
+          <a href={''}>
+            {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
+          </a>
+        </li>
+        <li
+          on:click={onChange(meal)}
+          class={weekPlan[dayIndex]?.[time]?.id === meal.id && 'bg-gray-800'}
+        >
+          <a href={''}>
+            {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
+          </a>
+        </li>
+        <li
+          on:click={onChange(meal)}
+          class={weekPlan[dayIndex]?.[time]?.id === meal.id && 'bg-gray-800'}
+        >
+          <a href={''}>
+            {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
+          </a>
+        </li>
+        <li
+          on:click={onChange(meal)}
+          class={weekPlan[dayIndex]?.[time]?.id === meal.id && 'bg-gray-800'}
+        >
+          <a href={''}>
+            {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
+          </a>
+        </li>
+        <li
+          on:click={onChange(meal)}
+          class={weekPlan[dayIndex]?.[time]?.id === meal.id && 'bg-gray-800'}
+        >
+          <a href={''}>
+            {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
+          </a>
+        </li>
         <li
           on:click={onChange(meal)}
           class={weekPlan[dayIndex]?.[time]?.id === meal.id && 'bg-gray-800'}

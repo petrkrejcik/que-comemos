@@ -9,8 +9,9 @@
   import dayjs from 'dayjs';
   import { authStore } from '$lib/auth/firebaseAuth';
   import { goto } from '$app/navigation';
+  import { decrementWeek, incrementWeek } from '$lib/date';
 
-  let week = $page.params.week;
+  $: week = $page.params.week;
   $: time = $page.params.time;
   $: user = $authStore.user;
 
@@ -24,7 +25,6 @@
     'Domingo'
   ];
   $: weekPlan = {};
-  let weekPlanRef = doc(db, 'weekPlans', week);
   $: weekPlanRef = doc(db, 'weekPlans', week);
 
   $: getWeekPlan(week).subscribe({
@@ -35,14 +35,6 @@
       console.log('🛎 ', 'error', error);
     }
   });
-
-  const onPrevClick = () => {
-    week--;
-  };
-
-  const onNextClick = () => {
-    week++;
-  };
 
   const onRandomizeClick = () => {
     const meals = getMeals();
@@ -66,9 +58,17 @@
 
 <AppBar>
   <div class="flex justify-center items-center w-full text-white">
-    <!-- <Button on:click={onPrevClick} icon="chevron_left" text color="white" />
-    {dayjs(week).format("DD.MM.")}
-    <Button on:click={onNextClick} icon="chevron_right" text color="white" /> -->
+    <a
+      class="btn btn-circle text-xl"
+      href={`/week/${decrementWeek(week)}/lunch`}>❮</a
+    >
+    <span class="text-lg">
+      {dayjs(week).format('DD.MM.')}
+    </span>
+    <a
+      class="btn btn-circle text-xl"
+      href={`/week/${incrementWeek(week)}/lunch`}>❯</a
+    >
   </div>
 </AppBar>
 <Content>

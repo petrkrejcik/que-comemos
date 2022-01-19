@@ -17,6 +17,7 @@
     "src/lib/firestoreCache.ts",
     "src/lib/meal.ts",
     "src/lib/user.ts",
-    "src/lib/firebase.ts"
+    "src/lib/firebase.ts",
+    "src/lib/date.ts"
   ]
 }
