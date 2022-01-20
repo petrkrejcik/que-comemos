@@ -19,3 +19,16 @@ export const CATEGORIES = [
   { value: 'pasta', text: 'Pasta', icon: '🍝' },
   { value: 'bread', text: 'Pan', icon: '🥖' }
 ];
+
+export const joinMeals = (meals: Meal[], separator = 'con') => {
+  return meals
+    .filter(Boolean)
+    .map((meal) => meal.name)
+    .join(` ${separator} `);
+};
+
+export interface Meal {
+  id: string;
+  name: string;
+  icon?: string;
+}

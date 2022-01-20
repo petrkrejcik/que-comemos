@@ -2,7 +2,7 @@
   import { page } from '$app/stores';
   import { doc, setDoc } from 'firebase/firestore';
   import { db } from '$lib/firebase';
-  import { randomizeWeek } from '$lib/meal';
+  import { joinMeals, randomizeWeek } from '$lib/meal';
   import { getMeals, getWeekPlan } from '$lib/firestoreCache';
   import AppBar from '$lib/AppBar.svelte';
   import Content from '$lib/Content.svelte';
@@ -94,9 +94,10 @@
           {#if user}
             {#if weekPlan[`d${i}`]?.[time]}
               <a class="link link-hover " href={`/week/${week}/${time}/${i}`}>
-                {[weekPlan[`d${i}`][time].icon, weekPlan[`d${i}`][time].name]
-                  .filter(Boolean)
-                  .join(' ')}
+                {joinMeals([
+                  weekPlan[`d${i}`][time],
+                  weekPlan[`d${i}`][`${time}-side-dish`]
+                ])}
               </a>
             {:else}
               <button class="btn" on:click={goto(`/week/${week}/${time}/${i}`)}

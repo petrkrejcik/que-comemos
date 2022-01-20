@@ -21,7 +21,8 @@
 
   const eatFor = [
     { value: 'lunch', text: 'Comida' },
-    { value: 'dinner', text: 'Cena' }
+    { value: 'dinner', text: 'Cena' },
+    { value: 'side-dish', text: 'Acompañamiento' }
   ];
 </script>
 
@@ -56,7 +57,7 @@
       class="select select-bordered w-full max-w-xs"
       bind:value={$meal.eatFor}
     >
-      <option disabled="disabled" value="">Cuando</option>
+      <option disabled="disabled" value="">Tipo</option>
       {#each eatFor as time}
         <option value={time.value}>{time.text}</option>
       {/each}

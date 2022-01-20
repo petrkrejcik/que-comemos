@@ -1,28 +1,52 @@
-# SvelteKit
+# Que comemos
 
-Example project using SvelteKit with the [SpaceX GraphQL API](https://api.spacex.land/graphql/), deployed to [Vercel](https://vercel.com).
+## TODO
 
-## Deploy Your Own
+- `cena` -> `dinner`
+- `eatFor` -> `daytime`
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fvercel%2Ftree%2Fmain%2Fexamples%2Fsveltekit&project-name=sveltekit-vercel&repository-name=sveltekit-vercel&demo-title=SvelteKit%20%2B%20Vercel&demo-description=SvelteKit%20app%20fetching%20data%20from%20the%20SpaceX%20GraphQL%20API.&demo-url=https%3A%2F%2Fsveltekit.examples.vercel.com%2F&demo-image=https%3A%2F%2Fsveltekit.examples.vercel.com%2Ftwitter.png)
+## Features
 
-_Live Example: https://sveltekit.examples.vercel.com_
+- See food plan
+  - Per week
+  - Button for random food
+- Database of food
+  - Lunch
+  - Dinner
 
-## Developing
+## Firestore
 
-Once you've created a project and installed dependencies with `npm install`, start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```js
+{
+  "/meals": {
+    "/[groupId]": {
+      "[id]": {
+        "name": "string",
+        "eatFor": "lunch"|"dinner",
+        "category": "fish"|"meat",
+        "lastEaten": "datetime",
+        "withSideDish": "boolean" // If side dish is allowed
+      }
+    }
+  },
+  "/weekPlans": {
+    "/[groupId]": {
+      "[startDate]": {
+        "d0": {
+          "lunch": "abc123",
+          "dinner": "abc123",
+          "childLunch": "abc123",
+        }
+      }
+    }
+  }
+}
 ```
 
-## Building
+## Database of products
 
-This uses the [Vercel Adapter](https://github.com/sveltejs/kit/tree/master/packages/adapter-vercel) for SvelteKit.
+openfoodfacts.org
 
-```bash
-npm run build
-```
+### API
+
+https://world.openfoodfacts.org/api/v0/product/8435065300277.json

@@ -5,6 +5,7 @@
   let dayIndex = `d${$page.params.day}`;
   let week = $page.params.week;
   $: time = $page.params.time;
+  let extra = $page.params.extra;
 </script>
 
-<SelectMeal {dayIndex} {week} {time} />
+<SelectMeal {dayIndex} {week} {time} {extra} />
