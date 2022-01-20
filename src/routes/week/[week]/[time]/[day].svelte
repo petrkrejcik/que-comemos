@@ -76,54 +76,6 @@
             {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
           </a>
         </li>
-        <li
-          on:click={onChange(meal)}
-          class={weekPlan[dayIndex]?.[time]?.id === meal.id && 'bg-gray-800'}
-        >
-          <a href={''}>
-            {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
-          </a>
-        </li>
-        <li
-          on:click={onChange(meal)}
-          class={weekPlan[dayIndex]?.[time]?.id === meal.id && 'bg-gray-800'}
-        >
-          <a href={''}>
-            {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
-          </a>
-        </li>
-        <li
-          on:click={onChange(meal)}
-          class={weekPlan[dayIndex]?.[time]?.id === meal.id && 'bg-gray-800'}
-        >
-          <a href={''}>
-            {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
-          </a>
-        </li>
-        <li
-          on:click={onChange(meal)}
-          class={weekPlan[dayIndex]?.[time]?.id === meal.id && 'bg-gray-800'}
-        >
-          <a href={''}>
-            {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
-          </a>
-        </li>
-        <li
-          on:click={onChange(meal)}
-          class={weekPlan[dayIndex]?.[time]?.id === meal.id && 'bg-gray-800'}
-        >
-          <a href={''}>
-            {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
-          </a>
-        </li>
-        <li
-          on:click={onChange(meal)}
-          class={weekPlan[dayIndex]?.[time]?.id === meal.id && 'bg-gray-800'}
-        >
-          <a href={''}>
-            {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}
-          </a>
-        </li>
       {/each}
     </ul>
   </div>
