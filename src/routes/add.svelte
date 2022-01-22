@@ -11,7 +11,8 @@
     name: '',
     category: '',
     eatFor: '',
-    forChild: true
+    forChild: true,
+    withSideDish: false
   });
 
   const onSubmit = () => {
@@ -66,6 +67,15 @@
     <label class="cursor-pointer label">
       <span class="label-text">También para niños</span>
       <input type="checkbox" class="checkbox" bind:checked={$meal.forChild} />
+    </label>
+
+    <label class="cursor-pointer label">
+      <span class="label-text">Puede tener acompañamiento</span>
+      <input
+        type="checkbox"
+        class="checkbox"
+        bind:checked={$meal.withSideDish}
+      />
     </label>
 
     <button type="submit" class="btn btn-primary">Guardar</button>

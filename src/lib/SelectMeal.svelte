@@ -8,6 +8,7 @@
   import { getIcon } from '$lib/meal';
   import BackButton from '$lib/backButton.svelte';
   import { goto } from '$app/navigation';
+  import { filterStore } from '$lib/stores/filterStore';
 
   export let dayIndex;
   export let week;
@@ -18,7 +19,7 @@
   let weekPlan = {};
   const weekPlanRef = doc(db, 'weekPlans', week);
 
-  $: meals = getMeals({ time: extra || time });
+  $: meals = getMeals({ time: extra || time, forChild: $filterStore.forChild });
   getWeekPlan(week).subscribe({
     next: (result = []) => {
       weekPlan = result;
@@ -59,12 +60,51 @@
 </script>
 
 <AppBar>
-  <BackButton />
+  <div class="flex-1">
+    <BackButton />
+  </div>
+  <div class="flex-none">
+    <div class="dropdown dropdown-end">
+      <div tabindex="0" class="btn btn-ghost rounded-btn">
+        <svg
+          focusable="false"
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          class="inline-block w-10 h-10 text-success fill-gray-400"
+          ><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" /></svg
+        >
+      </div>
+      <ul
+        tabindex="0"
+        class="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52"
+      >
+        <li>
+          <label class="cursor-pointer label">
+            <span class="label-text">Para niños</span>
+            <input
+              type="checkbox"
+              class="checkbox"
+              bind:checked={$filterStore.forChild}
+            />
+          </label>
+        </li>
+      </ul>
+    </div>
+    <a href="/add" class="btn btn-ghost mr-0"
+      ><svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        class="inline-block w-6 h-6 text-success fill-gray-400"
+        ><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" /></svg
+      ></a
+    >
+  </div>
 </AppBar>
 
 <Content>
   <div class="max-w-sm mx-auto">
-    <a href="/add" class="btn btn-ghost mr-0">Crear comida</a>
     <ul class="menu border bg-base-300 rounded-box overflow-auto">
       {#each $meals as meal}
         <li

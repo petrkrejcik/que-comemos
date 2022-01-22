@@ -6,16 +6,20 @@ import { db } from '$lib/firebase';
 
 const cache = writable({});
 
-export const getMeals = (filter = {}) => {
+export const getMeals = (
+  filter: { time?: string; forChild?: boolean } = {}
+) => {
   if (cache.meals) {
     return cache.meals;
   }
   const mealsRef = collection(db, 'meals');
   const mealsQuery = query(
     mealsRef,
-    where('eatFor', '==', filter.time || 'lunch'),
-    where('forChild', '==', true),
-    orderBy('name')
+    ...[
+      where('eatFor', '==', filter.time || 'lunch'),
+      filter.forChild && where('forChild', '==', true),
+      orderBy('name')
+    ].filter(Boolean)
   );
   const meals = collectionData(mealsQuery, { idField: 'id' }).pipe(
     startWith([])

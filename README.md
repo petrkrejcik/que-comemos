@@ -19,18 +19,19 @@
 ```js
 {
   "/meals": {
-    "/[groupId]": {
+    "+/[groupId]": {
       "[id]": {
         "name": "string",
-        "eatFor": "lunch"|"dinner",
+        "eatFor": "lunch"|"dinner"|"sideDish",
         "category": "fish"|"meat",
         "lastEaten": "datetime",
+        "forChild": "boolean",
         "withSideDish": "boolean" // If side dish is allowed
       }
     }
   },
   "/weekPlans": {
-    "/[groupId]": {
+    "+/[groupId]": {
       "[startDate]": {
         "d0": {
           "lunch": "abc123",
