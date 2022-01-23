@@ -2,7 +2,6 @@
 
 ## TODO
 
-- `cena` -> `dinner`
 - `eatFor` -> `daytime`
 
 ## Features
