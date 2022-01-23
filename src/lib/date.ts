@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/es.js';
-import weekOfYear from 'dayjs/plugin/weekOfYear';
+import weekOfYear from 'dayjs/plugin/weekOfYear.js';
 dayjs.extend(weekOfYear);
 
 export const getWeekId = (week) => {
