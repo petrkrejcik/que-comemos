@@ -1,3 +1,7 @@
+<script context="module">
+  export const prerender = true;
+</script>
+
 <script>
   import { authStore } from '$lib/auth/firebaseAuth';
   import { signInWithPopup } from 'firebase/auth';
