@@ -1,5 +1,5 @@
 const pwaConfiguration = {
-  srcDir: './build',
+  srcDir: './.vercel_build_output/static',
   outDir: './.svelte-kit/output/client',
   includeManifestIcons: false,
   base: '/',
