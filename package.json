@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
+    "build": "svelte-kit build && node ./pwa.js",
     "build2": "svelte-kit build && node ./pwa.js",
     "preview": "svelte-kit preview",
     "emulators:start": "firebase emulators:start --only=firestore --import=./firestore-emulators",
