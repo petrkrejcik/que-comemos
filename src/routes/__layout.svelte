@@ -1,7 +1,7 @@
 <script>
   import '../app.css';
   import { goto } from '$app/navigation';
-  import { browser } from '$app/env';
+  import { browser, dev } from '$app/env';
   import { authStore } from '$lib/auth/firebaseAuth';
   import { getWeekId } from '$lib/date';
   import { page } from '$app/stores';
