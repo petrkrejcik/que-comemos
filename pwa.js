@@ -4,7 +4,7 @@ import { pwaConfiguration } from './pwa-configuration.js';
 import { copyFileSync } from 'fs';
 
 const webmanifestDestinations = [
-  // './.svelte-kit/output/client/',
+  './.svelte-kit/output/client/',
   './.vercel_build_output/static'
 ];
 
