@@ -8,6 +8,7 @@
   import { QueryClient, QueryClientProvider } from '@sveltestack/svelte-query';
   import dayjs from 'dayjs';
   import 'dayjs/locale/es.js';
+  import { onMount } from 'svelte';
 
   dayjs.locale('es');
 
@@ -36,6 +37,7 @@
 </script>
 
 <svelte:head>
+  <!-- TODO: add !dev -->
   {#if browser}
     <link rel="manifest" href="/_app/manifest.webmanifest" />
   {/if}
