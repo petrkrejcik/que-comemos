@@ -1,7 +1,8 @@
 import preprocess from 'svelte-preprocess';
 import { VitePWA } from 'vite-plugin-pwa';
 import vercel from '@sveltejs/adapter-vercel';
-import { pwaConfiguration } from './pwa-configuration.js';
+import replace from '@rollup/plugin-replace';
+import { pwaConfiguration, replaceOptions } from './pwa-configuration.js';
 
 export default {
   kit: {
@@ -11,7 +12,7 @@ export default {
       define: {
         'process.env': process.env
       },
-      plugins: [VitePWA(pwaConfiguration)]
+      plugins: [VitePWA(pwaConfiguration), replace(replaceOptions)]
     }
   },
 

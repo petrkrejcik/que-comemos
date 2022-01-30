@@ -74,4 +74,10 @@ const pwaConfiguration = {
   }
 };
 
-export { pwaConfiguration };
+const reload = process.env.RELOAD_SW === 'true';
+const replaceOptions = {
+  __DATE__: new Date().toISOString(),
+  __RELOAD_SW__: reload ? 'true' : 'false'
+};
+
+export { pwaConfiguration, replaceOptions };
