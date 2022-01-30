@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import 'dayjs/locale/es.js';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 dayjs.extend(weekOfYear);
 
@@ -28,14 +27,14 @@ export const getWeekRelative = (isoDate: string) => {
     dayjs(isoDate).subtract(1, 'day').startOf('week').week() -
     dayjs().subtract(1, 'day').startOf('week').week();
   if (diff === 0) {
-    return 'esta semana';
+    return 'Esta semana';
   } else if (diff === 1) {
-    return 'la semana que viene';
+    return 'La semana que viene';
   } else if (diff > 1) {
-    return `en ${diff} semanas`;
+    return `En ${diff} semanas`;
   } else if (diff === -1) {
-    return 'la semana pasada';
+    return 'La semana pasada';
   } else {
-    return `hace ${diff} semanas`;
+    return `Hace ${diff} semanas`;
   }
 };

@@ -9,9 +9,9 @@ const cache = writable({});
 export const getMeals = (
   filter: { time?: string; forChild?: boolean } = {}
 ) => {
-  if (cache.meals) {
-    return cache.meals;
-  }
+  // if (cache.meals) {
+  //   return cache.meals;
+  // }
   const mealsRef = collection(db, 'meals');
   const mealsQuery = query(
     mealsRef,
