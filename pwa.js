@@ -5,7 +5,8 @@ import { copyFileSync } from 'fs';
 
 const webmanifestDestinations = [
   './.svelte-kit/output/client/',
-  './.vercel_build_output/static'
+  './.vercel_build_output/static',
+  './.vercel_build_output/static/_app'
 ];
 
 const swDestinations = ['./.vercel_build_output/static'];

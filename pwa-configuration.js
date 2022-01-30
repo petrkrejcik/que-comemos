@@ -14,17 +14,17 @@ const pwaConfiguration = {
     background_color: '#ffffff',
     icons: [
       {
-        src: '/pwa-192x192.png',
-        sizes: '192x192',
+        src: '/logo64.png',
+        sizes: '64x64',
         type: 'image/png'
       },
       {
-        src: '/pwa-512x512.png',
-        sizes: '512x512',
+        src: '/logo256.png',
+        sizes: '256x256',
         type: 'image/png'
       },
       {
-        src: '/pwa-512x512.png',
+        src: '/logo512.png',
         sizes: '512x512',
         type: 'image/png',
         purpose: 'any maskable'
