@@ -27,7 +27,7 @@
       if (!ROUTES.some((route) => $page.url.pathname.includes(route))) {
         // Redirect to main page if don't know if a user is logged in yet
         // User will see skeleton until we know wheter he is logged in or not
-        // Later we redirect him to login again eventually
+        // Later we redirect him to login again eventually.
         goto(`/week/${getWeekId(0)}/lunch`);
       }
     }
