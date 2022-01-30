@@ -5,10 +5,10 @@ import { copyFileSync } from 'fs';
 
 const webmanifestDestinations = [
   './.svelte-kit/output/client/',
-  './.svelte-kit/build'
+  './.vercel_build_output/static'
 ];
 
-const swDestinations = ['./.svelte-kit/build'];
+const swDestinations = ['./.vercel_build_output/static'];
 
 const buildPwa = async () => {
   const config = await resolveConfig(
