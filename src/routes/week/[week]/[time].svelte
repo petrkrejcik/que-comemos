@@ -1,16 +1,16 @@
+<script context="module">
+  export const prerender = true;
+</script>
+
 <script>
   import { page } from '$app/stores';
-  import { doc, setDoc } from 'firebase/firestore';
-  import { db } from '$lib/firebase';
   import { joinMeals, randomizeWeek } from '$lib/meal';
-  import { getMeals, getWeekPlan } from '$lib/firestoreCache';
   import AppBar from '$lib/AppBar.svelte';
   import Content from '$lib/Content.svelte';
   import { authStore } from '$lib/auth/firebaseAuth';
+  import { getWeekPlan } from '$lib/weekPlan/weekPlanApi';
   import { goto } from '$app/navigation';
   import { decrementWeek, getWeekRelative, incrementWeek } from '$lib/date';
-  import { FirebaseError } from 'firebase/app';
-  import { browser } from '$app/env';
   import dayjs from 'dayjs';
 
   $: week = $page.params.week;
@@ -23,41 +23,26 @@
     days.push(dayjs(firstDay).add(i, 'day'));
   }
 
-  $: weekPlan = !browser
-    ? {}
-    : getWeekPlan(week).subscribe({
-        next: (result = []) => {
-          weekPlan = result;
-        },
-        error: (error) => {
-          if (error instanceof FirebaseError) {
-            if (error.code === 'permission-denied') {
-              goto('/login');
-              return;
-            }
-          }
-          console.log('🛎 ', 'error', error);
-        }
-      });
+  $: weekPlan = getWeekPlan(week);
 
-  const onRandomizeClick = () => {
-    const meals = getMeals();
-    const newWeek = randomizeWeek(meals);
-    setDoc(
-      doc(db, 'weekPlans', week),
-      newWeek.reduce((result, meal, dayIndex) => {
-        return {
-          ...result,
-          [`d${dayIndex}`]: {
-            [time]: {
-              id: meal.id,
-              name: meal.name
-            }
-          }
-        };
-      }, {})
-    );
-  };
+  // const onRandomizeClick = () => {
+  //   const meals = getMeals();
+  //   const newWeek = randomizeWeek(meals);
+  //   setDoc(
+  //     doc(db, 'weekPlans', week),
+  //     newWeek.reduce((result, meal, dayIndex) => {
+  //       return {
+  //         ...result,
+  //         [`d${dayIndex}`]: {
+  //           [time]: {
+  //             id: meal.id,
+  //             name: meal.name
+  //           }
+  //         }
+  //       };
+  //     }, {})
+  //   );
+  // };
 </script>
 
 <AppBar>
@@ -131,11 +116,11 @@
           </div>
           <div class="w-full flex items-center h-12">
             {#if user}
-              {#if weekPlan[`d${i}`]?.[time]}
+              {#if $weekPlan.data?.[`d${i}`]?.[time]}
                 <a class="link link-hover " href={`/week/${week}/${time}/${i}`}>
                   {joinMeals([
-                    weekPlan[`d${i}`][time],
-                    weekPlan[`d${i}`][`${time}-side-dish`]
+                    $weekPlan.data?.[`d${i}`][time],
+                    $weekPlan.data?.[`d${i}`][`${time}-side-dish`]
                   ])}
                 </a>
               {:else}

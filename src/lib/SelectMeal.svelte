@@ -2,49 +2,43 @@
   import { page } from '$app/stores';
   import { doc, setDoc } from 'firebase/firestore';
   import { db } from '$lib/firebase';
-  import { getMeals, getWeekPlan } from '$lib/firestoreCache';
   import AppBar from '$lib/AppBar.svelte';
   import Content from '$lib/Content.svelte';
   import { getIcon } from '$lib/meal';
   import BackButton from '$lib/backButton.svelte';
   import { goto } from '$app/navigation';
   import { filterStore } from '$lib/stores/filterStore';
+  import { getMeals } from '$lib/meal/mealApi';
+  import { getWeekPlan } from '$lib/weekPlan/weekPlanApi';
 
   export let dayIndex;
   export let week;
   export let time; // e.g. lunch, dinner
   export let extra; // e.g. side-dish
   $: mealKey = extra ? `${time}-${extra}` : time;
+  $: weekPlan = getWeekPlan(week);
 
-  let weekPlan = {};
-  const weekPlanRef = doc(db, 'weekPlans', week);
-
-  $: meals = getMeals({ time: extra || time, forChild: $filterStore.forChild });
-  getWeekPlan(week).subscribe({
-    next: (result = []) => {
-      weekPlan = result;
-    },
-    error: (error) => {
-      console.log('🛎 ', 'error', error);
-    }
+  const meals = getMeals({
+    time: extra || time,
+    forChild: $filterStore.forChild
   });
 
   const onChange = (meal) => () => {
     if (!meal) return;
     const icon = getIcon(meal.category);
     setDoc(
-      weekPlanRef,
+      doc(db, 'weekPlans', week),
       {
         [dayIndex]: {
-          ...(weekPlan[dayIndex] || {}),
+          ...($weekPlan.data?.[dayIndex] || {}),
           [mealKey]: {
             id: meal.id,
             name: meal.name,
             ...(icon && { icon: icon })
           },
           // If main dish changes, remove side dish (if exists)
-          ...(weekPlan[dayIndex]?.[`${time}-side-dish`] &&
-            meal.id !== weekPlan[dayIndex]?.[time]?.id && {
+          ...($weekPlan.data?.[dayIndex]?.[`${time}-side-dish`] &&
+            meal.id !== $weekPlan.data?.[dayIndex]?.[time]?.id && {
               [`${time}-side-dish`]: null
             })
         }
@@ -106,10 +100,11 @@
 <Content>
   <div class="max-w-sm mx-auto">
     <ul class="menu border bg-base-300 rounded-box overflow-auto">
-      {#each $meals as meal}
+      {#each $meals.data || [] as meal}
         <li
           on:click={onChange(meal)}
-          class={weekPlan[dayIndex]?.[mealKey]?.id === meal.id && 'bg-gray-800'}
+          class={$weekPlan.data?.[dayIndex]?.[mealKey]?.id === meal.id &&
+            'bg-gray-800'}
         >
           <a href={''}>
             {[getIcon(meal.category), meal.name].filter(Boolean).join(' ')}

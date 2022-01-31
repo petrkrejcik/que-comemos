@@ -37,8 +37,7 @@
 </script>
 
 <svelte:head>
-  <!-- TODO: add !dev -->
-  {#if browser}
+  {#if !dev && browser}
     <link rel="manifest" href="/_app/manifest.webmanifest" />
   {/if}
 </svelte:head>
@@ -47,6 +46,6 @@
   <slot />
 </QueryClientProvider>
 
-<!-- {#if ReloadPrompt} -->
-<svelte:component this={ReloadPrompt} />
-<!-- {/if} -->
+{#if ReloadPrompt}
+  <svelte:component this={ReloadPrompt} />
+{/if}

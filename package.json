@@ -26,9 +26,7 @@
     "dayjs": "^1.10.7",
     "firebase": "^9.6.3",
     "prettier": "^2.3.2",
-    "prettier-plugin-svelte": "^2.3.1",
-    "rxfire": "^6.0.3",
-    "rxjs": "^7.5.2"
+    "prettier-plugin-svelte": "^2.3.1"
   },
   "prettier": {
     "arrowParens": "always",
