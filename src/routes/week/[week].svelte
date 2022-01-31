@@ -1,4 +1,6 @@
 <script context="module">
+  export const prerender = true;
+
   export async function load({ params }) {
     return {
       status: 301,

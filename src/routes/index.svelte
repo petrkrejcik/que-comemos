@@ -1,4 +1,6 @@
 <script context="module">
+  export const prerender = true;
+
   import { getWeekId } from '$lib/date';
 
   export async function load() {
