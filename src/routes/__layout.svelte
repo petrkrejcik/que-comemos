@@ -21,26 +21,26 @@
 
   const ROUTES = ['/meals'];
 
-  // $: if (browser && !$authStore.isLogged) {
-  //   if ($authStore.firebaseControlled) {
-  //     goto('/login', { state: { referer: window.location.pathname } });
-  //   } else {
-  //     if (!ROUTES.some((route) => $page.url.pathname.includes(route))) {
-  //       // Redirect to main page if don't know if a user is logged in yet
-  //       // User will see skeleton until we know wheter he is logged in or not
-  //       // Later we redirect him to login again eventually.
-  //       goto(`/week/${getWeekId(0)}/lunch`);
-  //     }
-  //   }
-  // }
+  $: if (browser && !$authStore.isLogged) {
+    if ($authStore.firebaseControlled) {
+      goto('/login', { state: { referer: window.location.pathname } });
+    } else {
+      if (!ROUTES.some((route) => $page.url.pathname.includes(route))) {
+        // Redirect to main page if don't know if a user is logged in yet
+        // User will see skeleton until we know wheter he is logged in or not
+        // Later we redirect him to login again eventually.
+        goto(`/week/${getWeekId(0)}/lunch`);
+      }
+    }
+  }
   const queryClient = new QueryClient();
 </script>
 
-<svelte:head>
+<!-- <svelte:head>
   {#if !dev && browser}
     <link rel="manifest" href="/_app/manifest.webmanifest" />
   {/if}
-</svelte:head>
+</svelte:head> -->
 
 <QueryClientProvider client={queryClient}>
   <slot />
