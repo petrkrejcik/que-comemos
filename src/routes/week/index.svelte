@@ -1,8 +1,6 @@
 <script>
   import { getWeekId } from '$lib/date';
   import WeekPlan from '$lib/weekPlan/WeekPlan.svelte';
-
-  // TODO: redirect to /week
 </script>
 
 <WeekPlan week={getWeekId()} time="lunch" />

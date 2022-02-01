@@ -19,7 +19,7 @@
   //     (ReloadPrompt = (await import('$lib/ReloadPrompt.svelte')).default);
   // });
 
-  const ROUTES = ['/meals'];
+  const ROUTES = ['/meals', '/week', '/'];
 
   $: if (browser && !$authStore.isLogged) {
     if ($authStore.firebaseControlled) {

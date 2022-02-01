@@ -14,6 +14,9 @@ export default {
       fallback: null,
       precompress: false
     }),
+    prerender: {
+      crawl: false // Otherwise there is infinite prerender loop on `incrementWeek`
+    },
     // adapter: vercel(),
     target: '#svelte',
     vite: {
