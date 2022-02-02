@@ -11,11 +11,8 @@
   export let week;
   export let time;
 
-  const days = [];
-  const firstDay = dayjs().startOf('week');
-  for (let i = 0; i < 7; i++) {
-    days.push(dayjs(firstDay).add(i, 'day'));
-  }
+  $: firstDay = dayjs(week);
+  $: days = Array.from({ length: 7 }, (_, i) => dayjs(firstDay).add(i, 'day'));
 
   $: weekPlan = getWeekPlan(week);
 
@@ -110,7 +107,7 @@
             </div>
           </div>
           <div class="w-full flex items-center h-12">
-            {#if !$authStore.user || $weekPlan.isLoading}
+            {#if !$authStore?.user || $weekPlan.isLoading}
               <div
                 class="w-44 h-6 bg-slate-200 dark:bg-slate-700 rounded animate-pulse"
               />

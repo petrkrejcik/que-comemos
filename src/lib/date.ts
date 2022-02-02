@@ -31,6 +31,6 @@ export const getWeekRelative = (isoDate: string) => {
   } else if (diff === -1) {
     return 'La semana pasada';
   } else {
-    return `Hace ${diff} semanas`;
+    return `Hace ${Math.abs(diff)} semanas`;
   }
 };

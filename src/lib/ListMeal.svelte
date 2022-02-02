@@ -27,7 +27,7 @@
 
 <Content>
   <div class="max-w-sm mx-auto">
-    <ul class="menu border bg-base-300 rounded-box overflow-auto">
+    <ul class="menu overflow-auto">
       {#each $meals.data || [] as meal}
         <li>
           <a href={getRoute(ROUTES.editMeal, { id: meal.id })}>
