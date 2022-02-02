@@ -1,6 +1,10 @@
 import { initializeApp, getApp, getApps } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
+import {
+  getFirestore,
+  connectFirestoreEmulator,
+  enableIndexedDbPersistence
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBfTjSCoH4xl6UFa31Eyj8h-Tf2ZxwPbmU',
@@ -22,6 +26,18 @@ try {
 export const auth = getAuth(firebaseApp);
 export const db = getFirestore(firebaseApp);
 export const authProvider = new GoogleAuthProvider();
+
+enableIndexedDbPersistence(db).catch((err) => {
+  if (err.code == 'failed-precondition') {
+    // Multiple tabs open, persistence can only be enabled
+    // in one tab at a a time.
+    // ...
+  } else if (err.code == 'unimplemented') {
+    // The current browser does not support all of the
+    // features required to enable persistence
+    // ...
+  }
+});
 
 if (process.env.NODE_ENV === 'development') {
   // connectFirestoreEmulator(db, 'http://0.0.0.0', 8080);
