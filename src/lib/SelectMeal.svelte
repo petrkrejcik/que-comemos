@@ -18,7 +18,7 @@
   $: mealKey = extra ? `${time}-${extra}` : time;
   $: weekPlan = getWeekPlan(week);
 
-  const meals = getMeals({
+  $: meals = getMeals({
     time: extra || time,
     forChild: $filterStore.forChild
   });
@@ -99,7 +99,7 @@
 
 <Content>
   <div class="max-w-sm mx-auto">
-    <ul class="menu border bg-base-300 rounded-box overflow-auto">
+    <ul class="menu overflow-auto">
       {#each $meals.data || [] as meal}
         <li
           on:click={onChange(meal)}

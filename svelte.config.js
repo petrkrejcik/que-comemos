@@ -1,7 +1,6 @@
 import preprocess from 'svelte-preprocess';
 import { VitePWA } from 'vite-plugin-pwa';
 import adapter from '@sveltejs/adapter-static';
-// import vercel from '@sveltejs/adapter-vercel';
 import replace from '@rollup/plugin-replace';
 import { pwaConfiguration, replaceOptions } from './pwa-configuration.js';
 
@@ -14,10 +13,6 @@ export default {
       fallback: null,
       precompress: false
     }),
-    // prerender: {
-    //   crawl: false // Otherwise there is infinite prerender loop on `incrementWeek`
-    // },
-    // adapter: vercel(),
     target: '#svelte',
     vite: {
       define: {

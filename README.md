@@ -50,3 +50,7 @@ openfoodfacts.org
 ### API
 
 https://world.openfoodfacts.org/api/v0/product/8435065300277.json
+
+## Assets
+
+Table icon - https://www.iconsdb.com/custom-color/table-icon.html

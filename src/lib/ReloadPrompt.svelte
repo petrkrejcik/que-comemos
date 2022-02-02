@@ -25,52 +25,21 @@
     offlineReady.set(false);
     needRefresh.set(false);
   };
-  $: toast = $offlineReady || $needRefresh;
 </script>
 
-{#if toast}
-  <div class="pwa-toast" role="alert">
-    <div class="message">
-      {#if $offlineReady}
-        <span> App ready to work offline </span>
-      {:else}
-        <span> New content available, click on reload button to update. </span>
-      {/if}
+{#if $needRefresh}
+  <div class="alert flex-row sticky top-[100vh] w-11/12 mx-auto mb-4">
+    <div class="flex-1">
+      <span class="mx-3"
+        >New content available, click on reload button to update.</span
+      >
     </div>
-    {#if $needRefresh}
-      <button on:click={() => updateServiceWorker(true)}> Reload </button>
-    {/if}
-    <button on:click={close}> Close </button>
+    <div class="flex-none mt-0">
+      <button class="btn btn-sm btn-ghost mr-2" on:click={close}>Close</button>
+      <button
+        class="btn btn-sm btn-primary"
+        on:click={() => updateServiceWorker(true)}>Reload</button
+      >
+    </div>
   </div>
 {/if}
-
-<div class="pwa-date">{buildDate}</div>
-
-<style>
-  .pwa-date {
-    visibility: hidden;
-  }
-  .pwa-toast {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    margin: 16px;
-    padding: 12px;
-    border: 1px solid #8885;
-    border-radius: 4px;
-    z-index: 2;
-    text-align: left;
-    box-shadow: 3px 4px 5px 0 #8885;
-    background-color: white;
-  }
-  .pwa-toast .message {
-    margin-bottom: 8px;
-  }
-  .pwa-toast button {
-    border: 1px solid #8885;
-    outline: none;
-    margin-right: 5px;
-    border-radius: 2px;
-    padding: 3px 10px;
-  }
-</style>

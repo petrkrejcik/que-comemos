@@ -1,3 +1,4 @@
+import { dev } from '$app/env';
 import { initializeApp, getApp, getApps } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import {
@@ -27,21 +28,18 @@ export const auth = getAuth(firebaseApp);
 export const db = getFirestore(firebaseApp);
 export const authProvider = new GoogleAuthProvider();
 
-enableIndexedDbPersistence(db).catch((err) => {
-  if (err.code == 'failed-precondition') {
-    // Multiple tabs open, persistence can only be enabled
-    // in one tab at a a time.
-    // ...
-  } else if (err.code == 'unimplemented') {
-    // The current browser does not support all of the
-    // features required to enable persistence
-    // ...
-  }
-});
-
-if (process.env.NODE_ENV === 'development') {
-  // connectFirestoreEmulator(db, 'http://0.0.0.0', 8080);
-  // connectFirestoreEmulator(db, 'http://192.168.1.131', 8080);
-  // connectFirestoreEmulator(db, window.location.hostname, 8080);
+if (dev) {
   connectFirestoreEmulator(db, 'localhost', 8080);
+} else {
+  enableIndexedDbPersistence(db).catch((err) => {
+    if (err.code == 'failed-precondition') {
+      // Multiple tabs open, persistence can only be enabled
+      // in one tab at a a time.
+      // ...
+    } else if (err.code == 'unimplemented') {
+      // The current browser does not support all of the
+      // features required to enable persistence
+      // ...
+    }
+  });
 }

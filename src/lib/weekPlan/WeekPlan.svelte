@@ -85,13 +85,14 @@
 <Content>
   <div class="w-full">
     <div class="tabs max-w-sm mb-4 mx-auto">
+      <!-- Not using <a> because of infinite prerender loop -->
       <a
-        class="text-base tab tab-bordered flex-grow uppercase {time ===
+        class="text-base tab tab-bordered flex-grow uppercase h-10 {time ===
           'lunch' && 'tab-active'}"
         href={`/week/${week}/lunch`}>Comida</a
       >
       <a
-        class="text-base tab tab-bordered flex-grow uppercase {time ===
+        class="text-base tab tab-bordered flex-grow uppercase h-10 {time ===
           'dinner' && 'tab-active'}"
         href={`/week/${week}/dinner`}>Cena</a
       >
@@ -105,13 +106,13 @@
                 day.isSame(dayjs(), 'day') && 'border-2 border-lime-500'
               } `}
             >
-              <span>{day.format('dd')}</span>
+              <span class="capitalize">{day.format('dd')}</span>
             </div>
           </div>
           <div class="w-full flex items-center h-12">
             {#if !$authStore.user || $weekPlan.isLoading}
               <div
-                class="w-44 h-full bg-slate-200 dark:bg-slate-700 rounded animate-pulse"
+                class="w-44 h-6 bg-slate-200 dark:bg-slate-700 rounded animate-pulse"
               />
             {:else if $weekPlan.data?.[`d${i}`]?.[time]}
               <a class="link link-hover " href={`/week/${week}/${time}/${i}`}>
