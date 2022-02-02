@@ -6,6 +6,7 @@ export const authStore = writable<{
   user?: any;
   firebaseControlled: boolean;
 }>({
+  user: undefined,
   isLogged: false,
   firebaseControlled: false
 });

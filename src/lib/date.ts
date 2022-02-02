@@ -2,10 +2,10 @@ import dayjs from 'dayjs';
 import weekOfYear from 'dayjs/plugin/weekOfYear.js';
 dayjs.extend(weekOfYear);
 
-export const getWeekId = (week) => {
+export const getWeekId = (week = 0) => {
   const monday = dayjs()
     .startOf('week')
-    .add(week * 7, 'day'); // EN locale starts with Sunday
+    .add(week * 7, 'day');
   return monday.format('YYYY-MM-DD');
 };
 
@@ -31,6 +31,6 @@ export const getWeekRelative = (isoDate: string) => {
   } else if (diff === -1) {
     return 'La semana pasada';
   } else {
-    return `Hace ${diff} semanas`;
+    return `Hace ${Math.abs(diff)} semanas`;
   }
 };
