@@ -42,16 +42,16 @@
 
 <AppBar>
   <div class="flex text-center items-center text-white w-72 mx-auto">
-    <a
-      class="btn btn-circle text-xl"
-      href={`/week/${decrementWeek(week)}/lunch`}>❮</a
+    <span
+      on:click={goto(`/week/${decrementWeek(week)}/lunch`)}
+      class="btn btn-circle text-xl">❮</span
     >
     <div class="text-lg grow">
       {getWeekRelative(week)}
     </div>
-    <a
-      class="btn btn-circle text-xl"
-      href={`/week/${incrementWeek(week)}/lunch`}>❯</a
+    <span
+      on:click={goto(`/week/${incrementWeek(week)}/lunch`)}
+      class="btn btn-circle text-xl">❯</span
     >
   </div>
   <div class="flex-none">
