@@ -1,13 +1,12 @@
 const pwaConfiguration = {
-  mode: 'development',
   srcDir: './build',
   outDir: './.svelte-kit/output/client',
   includeManifestIcons: false,
   base: '/',
   scope: '/',
   manifest: {
-    short_name: '<YOUR APP SHORT NAME>',
-    name: '<YOUR APP NAME>',
+    short_name: 'Que comemos?',
+    name: 'Que comemos?',
     scope: '/',
     start_url: '/',
     display: 'standalone',
@@ -33,7 +32,6 @@ const pwaConfiguration = {
     ]
   },
   workbox: {
-    mode: 'development',
     navigateFallback: '/',
     // vite and SvelteKit are not aligned: pwa plugin will use /\.[a-f0-9]{8}\./ by default: #164 optimize workbox work
     dontCacheBustURLsMatching: /-[a-f0-9]{8}\./,

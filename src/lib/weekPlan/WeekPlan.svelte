@@ -10,7 +10,6 @@
 
   export let week;
   export let time;
-  export let user;
 
   const days = [];
   const firstDay = dayjs().startOf('week');
@@ -110,24 +109,22 @@
             </div>
           </div>
           <div class="w-full flex items-center h-12">
-            {#if user}
-              {#if $weekPlan.data?.[`d${i}`]?.[time]}
-                <a class="link link-hover " href={`/week/${week}/${time}/${i}`}>
-                  {joinMeals([
-                    $weekPlan.data?.[`d${i}`][time],
-                    $weekPlan.data?.[`d${i}`][`${time}-side-dish`]
-                  ])}
-                </a>
-              {:else}
-                <button
-                  class="btn btn-ghost"
-                  on:click={goto(`/week/${week}/${time}/${i}`)}>Elegir</button
-                >
-              {/if}
-            {:else}
+            {#if !$authStore.user || $weekPlan.isLoading}
               <div
                 class="w-44 h-full bg-slate-200 dark:bg-slate-700 rounded animate-pulse"
               />
+            {:else if $weekPlan.data?.[`d${i}`]?.[time]}
+              <a class="link link-hover " href={`/week/${week}/${time}/${i}`}>
+                {joinMeals([
+                  $weekPlan.data?.[`d${i}`][time],
+                  $weekPlan.data?.[`d${i}`][`${time}-side-dish`]
+                ])}
+              </a>
+            {:else}
+              <button
+                class="btn btn-ghost"
+                on:click={goto(`/week/${week}/${time}/${i}`)}>Elegir</button
+              >
             {/if}
           </div>
         </div>
