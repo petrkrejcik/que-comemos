@@ -22,8 +22,8 @@ export default {
     vite: {
       define: {
         'process.env': process.env
-      }
-      // plugins: [VitePWA(pwaConfiguration), replace(replaceOptions)]
+      },
+      plugins: [VitePWA(pwaConfiguration), replace(replaceOptions)]
     }
   },
 

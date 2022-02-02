@@ -12,12 +12,12 @@
 
   dayjs.locale('es');
 
-  // let ReloadPrompt;
-  // onMount(async () => {
-  //   !dev &&
-  //     browser &&
-  //     (ReloadPrompt = (await import('$lib/ReloadPrompt.svelte')).default);
-  // });
+  let ReloadPrompt;
+  onMount(async () => {
+    !dev &&
+      browser &&
+      (ReloadPrompt = (await import('$lib/ReloadPrompt.svelte')).default);
+  });
 
   const ROUTES = ['/meals', '/week', '/'];
 
@@ -36,16 +36,16 @@
   const queryClient = new QueryClient();
 </script>
 
-<!-- <svelte:head>
+<svelte:head>
   {#if !dev && browser}
     <link rel="manifest" href="/_app/manifest.webmanifest" />
   {/if}
-</svelte:head> -->
+</svelte:head>
 
 <QueryClientProvider client={queryClient}>
   <slot />
 </QueryClientProvider>
 
-<!-- {#if ReloadPrompt}
+{#if ReloadPrompt}
   <svelte:component this={ReloadPrompt} />
-{/if} -->
+{/if}

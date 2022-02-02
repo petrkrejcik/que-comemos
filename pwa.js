@@ -3,12 +3,9 @@ import { VitePWA } from 'vite-plugin-pwa';
 import { pwaConfiguration } from './pwa-configuration.js';
 import { copyFileSync } from 'fs';
 
-const webmanifestDestinations = [
-  './.svelte-kit/output/client/',
-  './.vercel_build_output/static'
-];
+const webmanifestDestinations = ['./.svelte-kit/output/client/', './build'];
 
-const swDestinations = ['./.vercel_build_output/static'];
+const swDestinations = ['./build'];
 
 const buildPwa = async () => {
   const config = await resolveConfig(

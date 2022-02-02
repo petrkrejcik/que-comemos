@@ -1,6 +1,6 @@
 const pwaConfiguration = {
   mode: 'development',
-  srcDir: './.vercel_build_output/static',
+  srcDir: './build',
   outDir: './.svelte-kit/output/client',
   includeManifestIcons: false,
   base: '/',
@@ -37,7 +37,7 @@ const pwaConfiguration = {
     navigateFallback: '/',
     // vite and SvelteKit are not aligned: pwa plugin will use /\.[a-f0-9]{8}\./ by default: #164 optimize workbox work
     dontCacheBustURLsMatching: /-[a-f0-9]{8}\./,
-    globDirectory: './.vercel_build_output/static',
+    globDirectory: './build',
     globPatterns: ['robots.txt', '**/*.{js,css,html,ico,png,svg,webmanifest}'],
     globIgnores: ['**/sw*', '**/workbox-*'],
     manifestTransforms: [
