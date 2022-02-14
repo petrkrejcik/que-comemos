@@ -10,8 +10,8 @@ const pwaConfiguration = {
     scope: '/',
     start_url: '/',
     display: 'standalone',
-    theme_color: '#ffffff',
-    background_color: '#ffffff',
+    theme_color: '#2a2e37',
+    background_color: '#18181b',
     icons: [
       {
         src: '/logo64.png',
