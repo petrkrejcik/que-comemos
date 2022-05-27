@@ -13,12 +13,15 @@ export default {
       fallback: null,
       precompress: false,
     }),
-    trailingSlash: 'ignore',
     vite: {
       define: {
         'process.env': process.env
       },
       // plugins: [VitePWA(pwaConfiguration), replace(replaceOptions)]
+    },
+    prerender: {
+      // This can be false if you're using a fallback (i.e. SPA mode)
+      default: true
     }
   },
 
