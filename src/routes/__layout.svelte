@@ -12,12 +12,12 @@
 
   dayjs.locale('es');
 
-  let ReloadPrompt;
-  onMount(async () => {
-    !dev &&
-      browser &&
-      (ReloadPrompt = (await import('$lib/ReloadPrompt.svelte')).default);
-  });
+  // let ReloadPrompt;
+  // onMount(async () => {
+  //   !dev &&
+  //     browser &&
+  //     (ReloadPrompt = (await import('$lib/ReloadPrompt.svelte')).default);
+  // });
 
   $: if (browser && $authStore.firebaseControlled && !$authStore.isLogged) {
     if ($authStore.firebaseControlled) {
@@ -37,6 +37,6 @@
   <slot />
 </QueryClientProvider>
 
-{#if ReloadPrompt}
+<!-- {#if ReloadPrompt}
   <svelte:component this={ReloadPrompt} />
-{/if}
+{/if} -->
