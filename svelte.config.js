@@ -13,7 +13,7 @@ export default {
       fallback: null,
       precompress: false,
     }),
-    trailingSlash: 'never',
+    trailingSlash: 'always',
     vite: {
       define: {
         'process.env': process.env
