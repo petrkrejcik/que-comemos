@@ -11,8 +11,9 @@ export default {
       pages: 'build',
       assets: 'build',
       fallback: null,
-      precompress: false
+      precompress: false,
     }),
+    trailingSlash: 'never',
     vite: {
       define: {
         'process.env': process.env
