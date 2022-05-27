@@ -22,7 +22,7 @@ const buildPwa = async () => {
     await pwaPlugin.generateSW();
     webmanifestDestinations.forEach((d) => {
       copyFileSync(
-        './.svelte-kit/output/client/_app/manifest.webmanifest',
+        './.svelte-kit/output/client/_app/immutable/manifest.webmanifest',
         `${d}/manifest.webmanifest`
       );
     });
