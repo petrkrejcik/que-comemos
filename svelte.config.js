@@ -13,7 +13,6 @@ export default {
       fallback: null,
       precompress: false
     }),
-    target: '#svelte',
     vite: {
       define: {
         'process.env': process.env

@@ -52,12 +52,12 @@
   </div>
   <div class="flex-none">
     <div class="dropdown dropdown-end">
-      <button class="btn btn-square btn-ghost">
+      <button class="btn btn-square btn-ghost ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          class="inline-block w-6 h-6 stroke-current"
+          class="inline-block w-6 h-6 stroke-current rotate-90"
         >
           <path
             stroke-linecap="round"
@@ -71,8 +71,8 @@
         tabindex="0"
         class="shadow menu dropdown-content bg-base-100 rounded-box w-52"
       >
-        <li>
-          <a href="/meals">Lista de comidas</a>
+        <li >
+          <a class="text-black" href="/meals">Lista de comidas</a>
         </li>
       </ul>
     </div>
@@ -84,12 +84,12 @@
     <div class="tabs max-w-sm mb-4 mx-auto">
       <!-- Not using <a> because of infinite prerender loop -->
       <a
-        class="text-base tab tab-bordered flex-grow uppercase h-10 {time ===
+        class="text-inherit	text-base tab tab-bordered flex-grow uppercase h-10 {time ===
           'lunch' && 'tab-active'}"
         href={`/week/${week}/lunch`}>Comida</a
       >
       <a
-        class="text-base tab tab-bordered flex-grow uppercase h-10 {time ===
+        class="text-inherit text-base tab tab-bordered flex-grow uppercase h-10 {time ===
           'dinner' && 'tab-active'}"
         href={`/week/${week}/dinner`}>Cena</a
       >

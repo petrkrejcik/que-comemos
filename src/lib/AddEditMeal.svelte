@@ -49,18 +49,19 @@
 <Content>
   <form on:submit|preventDefault={onSubmit} class="flex flex-col form-control">
     <label class="label" for="meal">
-      <span class="label-text">Nombre</span>
+      <span class="label-text text-inherit">Nombre</span>
     </label>
     <input
       type="text"
       placeholder="Como se llama la comida?"
-      class="input"
+      class="input mb-4 text-black"
       id="meal"
       bind:value={$meal.name}
     />
 
     <select
-      class="select select-bordered w-full max-w-xs"
+      class="select select-bordered w-full max-w-xs text-black mb-4"
+      id="category"
       bind:value={$meal.category}
     >
       <option disabled="disabled" value="">Categoría</option>
@@ -70,7 +71,7 @@
     </select>
 
     <select
-      class="select select-bordered w-full max-w-xs"
+      class="select select-bordered w-full max-w-xs text-black mb-4"
       bind:value={$meal.eatFor}
     >
       <option disabled="disabled" value="">Tipo</option>
@@ -80,12 +81,12 @@
     </select>
 
     <label class="cursor-pointer label">
-      <span class="label-text">También para niños</span>
+      <span class="label-text text-inherit">También para niños</span>
       <input type="checkbox" class="checkbox" bind:checked={$meal.forChild} />
     </label>
 
     <label class="cursor-pointer label">
-      <span class="label-text">Puede tener acompañamiento</span>
+      <span class="label-text text-inherit">Puede tener acompañamiento</span>
       <input
         type="checkbox"
         class="checkbox"
@@ -93,6 +94,6 @@
       />
     </label>
 
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="submit" class="btn btn-primary mt-4">Guardar</button>
   </form>
 </Content>

@@ -9,24 +9,24 @@
     "emulators:export": "firebase emulators:export ./firestore-emulators"
   },
   "devDependencies": {
-    "@sveltejs/adapter-static": "^1.0.0-next.26",
-    "@sveltejs/adapter-vercel": "^1.0.0-next.36",
-    "@sveltejs/kit": "^1.0.0-next.231",
-    "autoprefixer": "^10.4.2",
-    "postcss": "^8.4.5",
-    "svelte": "^3.38.3",
-    "svelte-preprocess": "^4.10.2",
-    "tailwindcss": "^3.0.12",
-    "vite-plugin-pwa": "^0.11.13"
+    "@sveltejs/adapter-static": "^1.0.0-next.32",
+    "@sveltejs/adapter-vercel": "^1.0.0-next.56",
+    "@sveltejs/kit": "^1.0.0-next.345",
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.14",
+    "svelte": "^3.48.0",
+    "svelte-preprocess": "^4.10.6",
+    "tailwindcss": "^3.0.24",
+    "vite-plugin-pwa": "^0.12.0"
   },
   "dependencies": {
     "@sveltestack/svelte-query": "^1.6.0",
-    "broadcast-channel": "^4.9.0",
-    "daisyui": "^1.24.3",
-    "dayjs": "^1.10.7",
-    "firebase": "^9.6.3",
-    "prettier": "^2.3.2",
-    "prettier-plugin-svelte": "^2.3.1"
+    "broadcast-channel": "^4.12.0",
+    "daisyui": "^2.15.1",
+    "dayjs": "^1.11.2",
+    "firebase": "^9.8.1",
+    "prettier": "^2.6.2",
+    "prettier-plugin-svelte": "^2.7.0"
   },
   "prettier": {
     "arrowParens": "always",
