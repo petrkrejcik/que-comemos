@@ -7,7 +7,7 @@ export const getMeals = (
   filter: { time?: string; forChild?: boolean } = {}
 ) => {
   const mealsQuery = query(
-    collection(db, 'meals'),
+    collection(db, 'groups/mojeI6fi9GdeWywMEn9Yr/meals'),
     ...[
       where('eatFor', '==', filter.time || 'lunch'),
       filter.forChild && where('forChild', '==', true),
@@ -18,6 +18,6 @@ export const getMeals = (
 };
 
 export const getMeal = (id: string) => {
-  const mealQuery = doc(db, 'meals', id);
+  const mealQuery = doc(db, 'groups/mojeI6fi9GdeWywMEn9Yr/meals', id);
   return queryDoc(['meal', { id }], mealQuery);
 };

@@ -28,9 +28,9 @@
 
   const onSubmit = () => {
     if (mealId) {
-      updateDoc(doc(db, `meals/${mealId}`), $meal);
+      updateDoc(doc(db, `groups/mojeI6fi9GdeWywMEn9Yr/meals/${mealId}`), $meal);
     } else {
-      addDoc(collection(db, 'meals'), $meal);
+      addDoc(collection(db, `groups/mojeI6fi9GdeWywMEn9Yr/meals`), $meal);
     }
     history.back();
   };

@@ -15,27 +15,36 @@
 
 ## Firestore
 
-```js
+```json
 {
-  "/meals": {
-    "+/[groupId]": {
-      "[id]": {
-        "name": "string",
-        "eatFor": "lunch"|"dinner"|"sideDish",
-        "category": "fish"|"meat",
-        "lastEaten": "datetime",
-        "forChild": "boolean",
-        "withSideDish": "boolean" // If side dish is allowed
-      }
-    }
-  },
-  "/weekPlans": {
-    "+/[groupId]": {
-      "[startDate]": {
-        "d0": {
-          "lunch": "abc123",
-          "dinner": "abc123",
-          "childLunch": "abc123",
+  "/groups": {
+    "[groupId]": {
+      "/meals": {
+        "[id]": {
+          "name": "string",
+          "eatFor": "lunch"|"dinner"|"side-dish",
+          "category": "fish"|"meat",
+          "lastEaten": "datetime",
+          "forChild": "boolean",
+          "withSideDish": "boolean" // If side dish is allowed
+        }
+      },
+      "/weekPlans": {
+        "[startDate]": {
+          "d0": {
+            "lunch|dinner|lunch-side-dish": {
+              "icon": ":emoji",
+              "category": "string",
+              "id": "abc123",
+              "name": "duplicated name"
+            }
+          }
+        }
+      },
+      "users": {
+        "[userId]": {
+          "name": "string",
+          "isPending": "boolean",
         }
       }
     }

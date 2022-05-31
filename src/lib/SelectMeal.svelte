@@ -1,6 +1,6 @@
 <script>
   import { page } from '$app/stores';
-  import { doc, setDoc } from 'firebase/firestore';
+  import {  doc, setDoc } from 'firebase/firestore';
   import { db } from '$lib/firebase';
   import AppBar from '$lib/AppBar.svelte';
   import Content from '$lib/Content.svelte';
@@ -27,7 +27,7 @@
     if (!meal) return;
     const icon = getIcon(meal.category);
     setDoc(
-      doc(db, 'weekPlans', week),
+      doc(db, `groups/mojeI6fi9GdeWywMEn9Yr/weekPlans`, week),
       {
         [dayIndex]: {
           ...($weekPlan.data?.[dayIndex] || {}),
