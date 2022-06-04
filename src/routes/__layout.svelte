@@ -3,8 +3,8 @@
   import { goto } from '$app/navigation';
   import { browser, dev } from '$app/env';
   import { authStore } from '$lib/auth/firebaseAuth';
-  import { getWeekId } from '$lib/date';
-  import { page } from '$app/stores';
+  // import { getWeekId } from '$lib/date';
+  // import { page } from '$app/stores';
   import { QueryClient, QueryClientProvider } from '@sveltestack/svelte-query';
   import dayjs from 'dayjs';
   import 'dayjs/locale/es.js';

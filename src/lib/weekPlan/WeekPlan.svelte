@@ -71,7 +71,7 @@
         tabindex="0"
         class="shadow menu dropdown-content bg-base-100 rounded-box w-52"
       >
-        <li >
+        <li>
           <a class="text-black" href="/meals">Lista de comidas</a>
         </li>
       </ul>
@@ -115,7 +115,7 @@
               <a class="link link-hover " href={`/week/${week}/${time}/${i}`}>
                 {joinMeals([
                   $weekPlan.data?.[`d${i}`][time],
-                  $weekPlan.data?.[`d${i}`][`${time}-side-dish`]
+                  $weekPlan.data?.[`d${i}`][`${time}-side-dish`],
                 ])}
               </a>
             {:else}
