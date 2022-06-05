@@ -1,7 +1,7 @@
 <script>
-  import { joinMeals, randomizeWeek } from '$lib/meal';
-  import AppBar from '$lib/AppBar.svelte';
-  import Content from '$lib/Content.svelte';
+  import { joinMeals, randomizeWeek } from '$lib/meal/meal';
+  import AppBar from '$components/AppBar/AppBar.svelte';
+  import Content from '$components/Content/Content.svelte';
   import { authStore } from '$lib/auth/firebaseAuth';
   import { getWeekPlan } from '$lib/weekPlan/weekPlanApi';
   import { goto } from '$app/navigation';

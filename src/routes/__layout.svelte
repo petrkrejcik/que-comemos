@@ -16,7 +16,9 @@
   onMount(async () => {
     !dev &&
       browser &&
-      (ReloadPrompt = (await import('$lib/ReloadPrompt.svelte')).default);
+      (ReloadPrompt = (
+        await import('$components/ReloadPrompt/ReloadPrompt.svelte')
+      ).default);
   });
 
   $: if (browser && $authStore.firebaseControlled && !$authStore.isLogged) {

@@ -1,5 +1,5 @@
 <script>
-  import AddEditMeal from '$lib/AddEditMeal.svelte';
+  import AddEditMeal from '$pages/AddEditMeal.svelte';
 </script>
 
 <AddEditMeal />

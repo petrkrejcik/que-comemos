@@ -2,10 +2,10 @@
   import { writable } from 'svelte/store';
   import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
   import { db } from '$lib/firebase';
-  import AppBar from '$lib/AppBar.svelte';
-  import Content from '$lib/Content.svelte';
-  import { CATEGORIES } from '$lib/meal';
-  import BackButton from '$lib/backButton.svelte';
+  import AppBar from '$components/AppBar/AppBar.svelte';
+  import Content from '$components/Content/Content.svelte';
+  import { CATEGORIES } from '$lib/meal/meal';
+  import BackButton from '$components/Button/BackButton.svelte';
   import { getMeal } from '$lib/meal/mealApi';
 
   export let mealId;
@@ -15,7 +15,7 @@
     category: '',
     eatFor: '',
     forChild: true,
-    withSideDish: false
+    withSideDish: false,
   });
 
   if (mealId) {
@@ -38,7 +38,7 @@
   const eatFor = [
     { value: 'lunch', text: 'Comida' },
     { value: 'dinner', text: 'Cena' },
-    { value: 'side-dish', text: 'Acompañamiento' }
+    { value: 'side-dish', text: 'Acompañamiento' },
   ];
 </script>
 

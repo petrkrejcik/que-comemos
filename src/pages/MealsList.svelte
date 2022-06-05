@@ -1,11 +1,11 @@
 <script>
   import { page } from '$app/stores';
-  import {  doc, setDoc } from 'firebase/firestore';
+  import { doc, setDoc } from 'firebase/firestore';
   import { db } from '$lib/firebase';
-  import AppBar from '$lib/AppBar.svelte';
-  import Content from '$lib/Content.svelte';
-  import { getIcon } from '$lib/meal';
-  import BackButton from '$lib/backButton.svelte';
+  import AppBar from '$components/AppBar/AppBar.svelte';
+  import Content from '$components/Content/Content.svelte';
+  import { getIcon } from '$lib/meal/meal';
+  import BackButton from '$components/Button/BackButton.svelte';
   import { goto } from '$app/navigation';
   import { filterStore } from '$lib/stores/filterStore';
   import { getMeals } from '$lib/meal/mealApi';
@@ -20,7 +20,7 @@
 
   $: meals = getMeals({
     time: extra || time,
-    forChild: $filterStore.forChild
+    forChild: $filterStore.forChild,
   });
 
   const onChange = (meal) => () => {
@@ -34,14 +34,14 @@
           [mealKey]: {
             id: meal.id,
             name: meal.name,
-            ...(icon && { icon: icon })
+            ...(icon && { icon: icon }),
           },
           // If main dish changes, remove side dish (if exists)
           ...($weekPlan.data?.[dayIndex]?.[`${time}-side-dish`] &&
             meal.id !== $weekPlan.data?.[dayIndex]?.[time]?.id && {
-              [`${time}-side-dish`]: null
-            })
-        }
+              [`${time}-side-dish`]: null,
+            }),
+        },
       },
       { merge: true }
     );

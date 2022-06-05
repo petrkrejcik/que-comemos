@@ -1,6 +1,6 @@
 <script>
   import { page } from '$app/stores';
-  import SelectMeal from '$lib/SelectMeal.svelte';
+  import MealsList from '$pages/MealsList.svelte';
 
   let dayIndex = `d${$page.params.day}`;
   let week = $page.params.week;
@@ -8,4 +8,4 @@
   let extra = $page.params.extra;
 </script>
 
-<SelectMeal {dayIndex} {week} {time} {extra} />
+<MealsList {dayIndex} {week} {time} {extra} />

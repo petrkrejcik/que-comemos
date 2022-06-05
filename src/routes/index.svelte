@@ -1,6 +1,6 @@
 <script>
   import { getWeekId } from '$lib/date';
-  import WeekPlan from '$lib/weekPlan/WeekPlan.svelte';
+  import WeekPlan from '$pages/WeekPlan.svelte';
 
   // TODO: redirect to /week
 </script>

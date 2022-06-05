@@ -1,10 +1,10 @@
 <script>
   import { getMeals } from '$lib/meal/mealApi';
-  import AppBar from '$lib/AppBar.svelte';
-  import Content from '$lib/Content.svelte';
-  import { getIcon } from '$lib/meal';
+  import AppBar from '$components/AppBar/AppBar.svelte';
+  import Content from '$components/Content/Content.svelte';
+  import { getIcon } from '$lib/meal/meal';
   import { getRoute, ROUTES } from '$lib/routes';
-  import BackButton from '$lib/backButton.svelte';
+  import BackButton from '$components/Button/BackButton.svelte';
 
   $: meals = getMeals();
 </script>
