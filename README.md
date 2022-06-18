@@ -2,7 +2,10 @@
 
 ## TODO
 
-- `eatFor` -> `daytime`
+- [ ] `eatFor` -> `daytime`
+- [ ] Non-existing route throws error. Should redirect.
+- [ ] Add side-dish from week plan (do not hardcode if a dish has side-dish)
+- [ ] Filter "something with potatoes"
 
 ## Features
 

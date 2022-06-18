@@ -7,19 +7,21 @@
   import { CATEGORIES } from '$lib/meal/meal';
   import BackButton from '$components/Button/BackButton.svelte';
   import { getMeal } from '$lib/meal/mealApi';
+  import { authStore } from '$lib/auth/firebaseAuth';
 
   export let mealId;
+  $: groupId = $authStore.groupId;
 
   const meal = writable({
     name: '',
     category: '',
-    eatFor: '',
+    eatFor: 'lunch',
     forChild: true,
     withSideDish: false,
   });
 
-  if (mealId) {
-    getMeal(mealId).subscribe((result) => {
+  $: if (mealId) {
+    getMeal(mealId, groupId).subscribe((result) => {
       if (result.data) {
         meal.set(result.data);
       }
@@ -27,10 +29,13 @@
   }
 
   const onSubmit = () => {
+    if (!groupId) {
+      throw new Error('No group ID');
+    }
     if (mealId) {
-      updateDoc(doc(db, `groups/mojeI6fi9GdeWywMEn9Yr/meals/${mealId}`), $meal);
+      updateDoc(doc(db, `groups/${groupId}/meals/${mealId}`), $meal);
     } else {
-      addDoc(collection(db, `groups/mojeI6fi9GdeWywMEn9Yr/meals`), $meal);
+      addDoc(collection(db, `groups/${groupId}/meals`), $meal);
     }
     history.back();
   };

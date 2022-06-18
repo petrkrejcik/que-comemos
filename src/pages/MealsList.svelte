@@ -10,24 +10,29 @@
   import { filterStore } from '$lib/stores/filterStore';
   import { getMeals } from '$lib/meal/mealApi';
   import { getWeekPlan } from '$lib/weekPlan/weekPlanApi';
+  import { authStore } from '$lib/auth/firebaseAuth';
 
   export let dayIndex;
   export let week;
   export let time; // e.g. lunch, dinner
   export let extra; // e.g. side-dish
+  $: groupId = $authStore.groupId;
   $: mealKey = extra ? `${time}-${extra}` : time;
-  $: weekPlan = getWeekPlan(week);
+  $: weekPlan = getWeekPlan(week, groupId);
 
-  $: meals = getMeals({
+  $: meals = getMeals(groupId, {
     time: extra || time,
     forChild: $filterStore.forChild,
   });
 
-  const onChange = (meal) => () => {
+  const onChange = (meal) => async () => {
     if (!meal) return;
+    if (!groupId) {
+      throw new Error('No group ID');
+    }
     const icon = getIcon(meal.category);
-    setDoc(
-      doc(db, `groups/mojeI6fi9GdeWywMEn9Yr/weekPlans`, week),
+    await setDoc(
+      doc(db, `groups/${groupId}/weekPlans`, week),
       {
         [dayIndex]: {
           ...($weekPlan.data?.[dayIndex] || {}),

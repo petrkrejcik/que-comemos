@@ -6,3 +6,4 @@ node_modules
 .vercel
 *.log
 /build
+functions/que-comemos-hoy-5febf-firebase-adminsdk.json

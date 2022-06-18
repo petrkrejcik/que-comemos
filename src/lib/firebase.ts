@@ -1,6 +1,6 @@
 import { dev } from '$app/env';
 import { initializeApp, getApp, getApps } from 'firebase/app';
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, connectAuthEmulator } from 'firebase/auth';
 import {
   getFirestore,
   connectFirestoreEmulator,
@@ -18,18 +18,23 @@ const firebaseConfig = {
 };
 
 let firebaseApp;
+let isAlreadyInitialized = false;
 try {
   firebaseApp = getApp();
+  isAlreadyInitialized = true;
 } catch (error) {
   firebaseApp = initializeApp(firebaseConfig);
 }
 
 export const auth = getAuth(firebaseApp);
 export const db = getFirestore(firebaseApp);
-export const authProvider = new GoogleAuthProvider();
+export const googleAuthProvider = new GoogleAuthProvider();
 
 if (dev) {
-  connectFirestoreEmulator(db, 'localhost', 8080);
+  if (!isAlreadyInitialized) {
+    connectFirestoreEmulator(db, 'localhost', 8080);
+    connectAuthEmulator(auth, 'http://localhost:9099');
+  }
 } else {
   enableIndexedDbPersistence(db).catch((err) => {
     if (err.code == 'failed-precondition') {

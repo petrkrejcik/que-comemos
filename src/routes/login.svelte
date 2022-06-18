@@ -1,7 +1,7 @@
 <script>
   import { authStore } from '$lib/auth/firebaseAuth';
   import { signInWithPopup } from 'firebase/auth';
-  import { auth, authProvider } from '$lib/firebase';
+  import { auth, googleAuthProvider } from '$lib/firebase';
   import { browser } from '$app/env';
   import { goto } from '$app/navigation';
 
@@ -11,7 +11,7 @@
   }
 
   const login = () => {
-    signInWithPopup(auth, authProvider).catch((error) => {
+    signInWithPopup(auth, googleAuthProvider).catch((error) => {
       console.log('🛎 ', 'error during login', error);
     });
   };

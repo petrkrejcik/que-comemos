@@ -5,8 +5,10 @@
   import { getIcon } from '$lib/meal/meal';
   import { getRoute, ROUTES } from '$lib/routes';
   import BackButton from '$components/Button/BackButton.svelte';
+  import { authStore } from '$lib/auth/firebaseAuth';
 
-  $: meals = getMeals();
+  $: groupId = $authStore.groupId;
+  $: meals = getMeals(groupId);
 </script>
 
 <AppBar>
