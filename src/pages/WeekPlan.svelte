@@ -15,6 +15,7 @@
   $: days = Array.from({ length: 7 }, (_, i) => dayjs(firstDay).add(i, 'day'));
 
   $: weekPlan = getWeekPlan(week, $authStore.groupId);
+  $: console.log('🛎 ', 'weekPlan', $weekPlan);
 
   // const onRandomizeClick = () => {
   //   const meals = getMeals();

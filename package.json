@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "svelte-kit dev",
+    "dev": "svelte-kit dev --port=3210",
     "build": "svelte-kit build && node ./pwa.js",
     "preview": "svelte-kit preview",
     "emulators:start": "firebase emulators:start --only=firestore,auth --import=./firestore-emulators",

@@ -7,12 +7,13 @@
 
   $: user = $authStore.user;
   $: if (browser && user) {
-    goto(history.state?.referer || '/');
+    const redirect = history.state?.referer || '/';
+    goto(redirect === '/login' ? '/' : redirect);
   }
 
   const login = () => {
     signInWithPopup(auth, googleAuthProvider).catch((error) => {
-      console.log('🛎 ', 'error during login', error);
+      console.error('Login error:', error.message);
     });
   };
 </script>

@@ -31,7 +31,7 @@
 
 <svelte:head>
   {#if !dev && browser}
-    <link rel="manifest" href="/_app/manifest.webmanifest" />
+    <link rel="manifest" href="/manifest.webmanifest" />
   {/if}
 </svelte:head>
 
