@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
   import { useRegisterSW } from 'virtual:pwa-register/svelte';
   // replaced dynamically
   const buildDate = '__DATE__';
@@ -42,4 +42,4 @@
       >
     </div>
   </div>
-{/if}
+{/if} -->
