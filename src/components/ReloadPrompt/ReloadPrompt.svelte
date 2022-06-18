@@ -1,4 +1,4 @@
-<!-- <script>
+<script>
   import { useRegisterSW } from 'virtual:pwa-register/svelte';
   // replaced dynamically
   const buildDate = '__DATE__';
@@ -19,7 +19,7 @@
     },
     onRegisterError(error) {
       console.log('SW registration error', error);
-    }
+    },
   });
   const close = () => {
     offlineReady.set(false);
@@ -42,4 +42,4 @@
       >
     </div>
   </div>
-{/if} -->
+{/if}

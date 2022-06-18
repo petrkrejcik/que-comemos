@@ -6,6 +6,7 @@ const pwaConfiguration = {
   scope: '/',
   manifest: {
     short_name: 'Que comemos?',
+    id: '/',
     name: 'Que comemos?',
     scope: '/',
     start_url: '/',

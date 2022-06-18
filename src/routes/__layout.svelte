@@ -39,6 +39,6 @@
   <slot />
 </QueryClientProvider>
 
-<!-- {#if ReloadPrompt}
+{#if ReloadPrompt}
   <svelte:component this={ReloadPrompt} />
-{/if} -->
+{/if}

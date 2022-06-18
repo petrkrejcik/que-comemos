@@ -1,11 +1,11 @@
 import { dev } from '$app/env';
 import { initializeApp, getApp, getApps } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, connectAuthEmulator } from 'firebase/auth';
 import {
-  getFirestore,
-  connectFirestoreEmulator,
-  enableIndexedDbPersistence
-} from 'firebase/firestore';
+  getAuth,
+  GoogleAuthProvider,
+  connectAuthEmulator,
+} from 'firebase/auth';
+import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBfTjSCoH4xl6UFa31Eyj8h-Tf2ZxwPbmU',
@@ -14,7 +14,7 @@ const firebaseConfig = {
   projectId: 'que-comemos-hoy-5febf',
   storageBucket: 'que-comemos-hoy-5febf.appspot.com',
   messagingSenderId: '545019553365',
-  appId: '1:545019553365:web:333935cb9e69e47e4196dc'
+  appId: '1:545019553365:web:333935cb9e69e47e4196dc',
 };
 
 let firebaseApp;
@@ -30,11 +30,12 @@ export const auth = getAuth(firebaseApp);
 export const db = getFirestore(firebaseApp);
 export const googleAuthProvider = new GoogleAuthProvider();
 
-// if (dev) {
-//   if (!isAlreadyInitialized) {
-//     connectFirestoreEmulator(db, 'localhost', 8080);
-//     connectAuthEmulator(auth, 'http://localhost:9099');
-//   }
+if (dev) {
+  if (!isAlreadyInitialized) {
+    connectFirestoreEmulator(db, 'localhost', 8080);
+    connectAuthEmulator(auth, 'http://localhost:9099');
+  }
+}
 // } else {
 //   enableIndexedDbPersistence(db).catch((err) => {
 //     if (err.code == 'failed-precondition') {

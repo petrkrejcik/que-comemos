@@ -18,7 +18,7 @@ export default {
       define: {
         'process.env': process.env
       },
-      // plugins: [VitePWA(pwaConfiguration), replace(replaceOptions)],
+      plugins: [VitePWA(pwaConfiguration), replace(replaceOptions)],
       resolve: {
         alias: {
           $pages: path.resolve("./src/pages"),
