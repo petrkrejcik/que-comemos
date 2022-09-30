@@ -18,15 +18,35 @@ yarn dev # For usage with emulators - it's using FIREBASE_AUTH_EMULATOR_HOST=loc
 - [ ] Non-existing route throws error. Should redirect.
 - [ ] Add side-dish from week plan (do not hardcode if a dish has side-dish)
 - [ ] Filter "something with potatoes"
+- [ ] Create group
+  - [ ] Profile page
+
+### First sign in
+1. Trigger sign in function on server
+1. Generate random `groupId` and create `/groups/{groupId}`
+1. Set cusotm claims with `{groupdId}`
+
+### Add user to group
+If I want to colaborate and share the week plan with somebody I have to invite them.
+1. Open profile page
+1. Click "Add group member"
+1. Fill email
+  - Call function `invite(email)`
+  - Find user by email and their group
+  - I'll get a user object of a person who I want to invite with the `groupId` in claims
+  - Add invited user to `groups/{myGroupId}/members` `{[userId]: {name, isPending}}`
+  - Add `groups/{groupId}/invitations {myName, myGroupId}
+1. That user will see a dialog "User xyz wants to invite you to their group"
+1. Accept
+
+### Questions
+- How can I register?
+- What is my default `groupId` when I register?
 
 ## Features
 
-- See food plan
-  - Per week
-  - Button for random food
-- Database of food
-  - Lunch
-  - Dinner
+- Colaborate on your week plan with family members
+- Create a database of your favorite dishes
 
 ## Firestore
 
@@ -56,12 +76,22 @@ yarn dev # For usage with emulators - it's using FIREBASE_AUTH_EMULATOR_HOST=loc
           }
         }
       },
-      "users": {
+      "owner": {
+        "uid": "string",
+        "name": "string", // Filled from sign in provider during the first login
+      },
+      "members": { // Todo now it's `users` -> rename it to `members`. List of accepted
         "[userId]": {
           "name": "string",
-          "isPending": "boolean",
+          "isPending?": "boolean", // Indicating that the user is invited but haven't accepted yet
         }
-      }
+      },
+      "invitations?": [ // List of received (incoming) invitations
+        {
+          "name": "string", // Name of the user who sent the invitation
+          "groupId": "string"
+        }
+      ]
     }
   }
 }
