@@ -23,6 +23,7 @@ export default {
         alias: {
           $pages: path.resolve("./src/pages"),
           $components: path.resolve("./src/components"),
+          $actions: path.resolve("./src/actions"),
         }
       }
     },

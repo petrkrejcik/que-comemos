@@ -1,39 +1,39 @@
 <script>
-  import { joinMeals, randomizeWeek } from '$lib/meal/meal';
+  import { db } from '$lib/firebase';
+  import { joinMeals } from '$lib/meal/meal';
   import AppBar from '$components/AppBar/AppBar.svelte';
   import Content from '$components/Content/Content.svelte';
   import { authStore } from '$lib/auth/firebaseAuth';
   import { getWeekPlan } from '$lib/weekPlan/weekPlanApi';
   import { goto } from '$app/navigation';
   import { decrementWeek, getWeekRelative, incrementWeek } from '$lib/date';
+  import longpress from '$actions/longpress';
   import dayjs from 'dayjs';
+  import { doc, setDoc } from 'firebase/firestore';
 
   export let week;
   export let time;
+  let editingDay;
+  $: groupId = $authStore.groupId;
 
   $: firstDay = dayjs(week);
   $: days = Array.from({ length: 7 }, (_, i) => dayjs(firstDay).add(i, 'day'));
 
   $: weekPlan = getWeekPlan(week, $authStore.groupId);
 
-  // const onRandomizeClick = () => {
-  //   const meals = getMeals();
-  //   const newWeek = randomizeWeek(meals);
-  //   setDoc(
-  //     doc(db, 'weekPlans', week),
-  //     newWeek.reduce((result, meal, dayIndex) => {
-  //       return {
-  //         ...result,
-  //         [`d${dayIndex}`]: {
-  //           [time]: {
-  //             id: meal.id,
-  //             name: meal.name
-  //           }
-  //         }
-  //       };
-  //     }, {})
-  //   );
-  // };
+  const clearDay = async (day) => {
+    if (!groupId) {
+      throw new Error('No group ID');
+    }
+    const dayIndex = `d${day}`;
+    const { [time]: omit, ...restDay } = $weekPlan.data[dayIndex] || {};
+    const newWeekPlan = {
+      ...$weekPlan.data,
+      [dayIndex]: restDay,
+    };
+    await setDoc(doc(db, `groups/${groupId}/weekPlans`, week), newWeekPlan);
+    editingDay = null;
+  };
 </script>
 
 <AppBar>
@@ -96,7 +96,16 @@
     </div>
     <ul class="divide-y divide-zinc-800">
       {#each days as day, i}
-        <div class="max-w-sm mx-auto flex items-center py-2">
+        <div
+          class="max-w-sm mx-auto flex items-center py-2"
+          use:longpress
+          on:longpress={(e) => {
+            if ($weekPlan.data?.[`d${i}`]?.[time]) {
+              // Allow edit only of displayed meal
+              editingDay = i;
+            }
+          }}
+        >
           <div class="avatar placeholder mr-10">
             <div
               class={`bg-neutral text-gray-400 rounded-full w-12 h-12 ${
@@ -112,12 +121,24 @@
                 class="w-44 h-6 bg-slate-200 dark:bg-slate-700 rounded animate-pulse"
               />
             {:else if $weekPlan.data?.[`d${i}`]?.[time]}
-              <a class="link link-hover " href={`/week/${week}/${time}/${i}`}>
-                {joinMeals([
-                  $weekPlan.data?.[`d${i}`][time],
-                  $weekPlan.data?.[`d${i}`][`${time}-side-dish`],
-                ])}
-              </a>
+              {#if editingDay === i}
+                <div>
+                  <button
+                    on:click={() => clearDay(i)}
+                    class="btn btn-ghost btn-primary">Eliminar</button
+                  >
+                  <button on:click={() => (editingDay = null)} class="btn"
+                    >Cancelar</button
+                  >
+                </div>
+              {:else}
+                <a class="link link-hover " href={`/week/${week}/${time}/${i}`}>
+                  {joinMeals([
+                    $weekPlan.data?.[`d${i}`][time],
+                    $weekPlan.data?.[`d${i}`][`${time}-side-dish`],
+                  ])}
+                </a>
+              {/if}
             {:else}
               <button
                 class="btn btn-ghost"
