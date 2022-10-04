@@ -17,5 +17,8 @@
   ],
   "rules": {
     "no-unused-vars": "warn"
+  },
+  "globals": {
+    "process": true
   }
 }

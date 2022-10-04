@@ -1,8 +1,8 @@
 import preprocess from 'svelte-preprocess';
-import { VitePWA } from 'vite-plugin-pwa';
+// import { VitePWA } from 'vite-plugin-pwa';
 import adapter from '@sveltejs/adapter-static';
-import replace from '@rollup/plugin-replace';
-import { pwaConfiguration, replaceOptions } from './pwa-configuration.js';
+// import replace from '@rollup/plugin-replace';
+// import { pwaConfiguration, replaceOptions } from './pwa-configuration.js';
 import path from "path";
 
 export default {
@@ -18,7 +18,7 @@ export default {
       define: {
         'process.env': process.env
       },
-      plugins: [VitePWA(pwaConfiguration), replace(replaceOptions)],
+      // plugins: [VitePWA(pwaConfiguration), replace(replaceOptions)],
       resolve: {
         alias: {
           $pages: path.resolve("./src/pages"),
