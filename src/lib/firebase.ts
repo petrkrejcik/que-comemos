@@ -1,4 +1,4 @@
-import { dev } from '$app/env';
+import { dev } from '$app/environment';
 import { initializeApp, getApp, getApps } from 'firebase/app';
 import {
   getAuth,
@@ -32,8 +32,8 @@ export const googleAuthProvider = new GoogleAuthProvider();
 
 if (dev) {
   if (!isAlreadyInitialized) {
-    connectFirestoreEmulator(db, 'localhost', 8080);
-    connectAuthEmulator(auth, 'http://localhost:9099');
+    // connectFirestoreEmulator(db, 'localhost', 8080);
+    // connectAuthEmulator(auth, 'http://localhost:9099');
   }
 }
 // } else {

@@ -2,7 +2,7 @@
   import { authStore } from '$lib/auth/firebaseAuth';
   import { signInWithPopup } from 'firebase/auth';
   import { auth, googleAuthProvider } from '$lib/firebase';
-  import { browser } from '$app/env';
+  import { browser } from '$app/environment';
   import { goto } from '$app/navigation';
 
   $: user = $authStore.user;

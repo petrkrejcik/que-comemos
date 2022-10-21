@@ -1,10 +1,9 @@
 import {
-  QueryKey,
   useQuery,
   useQueryClient,
-  UseQueryOptions
 } from '@sveltestack/svelte-query';
-import { DocumentData, getDocs, onSnapshot, Query } from 'firebase/firestore';
+import type { QueryKey, UseQueryOptions } from '@sveltestack/svelte-query';
+import {   onSnapshot, Query } from 'firebase/firestore';
 
 export const queryCollection = (
   key: QueryKey,
