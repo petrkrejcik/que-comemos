@@ -7,3 +7,5 @@ node_modules
 *.log
 /build
 functions/lib/adminsdk.json
+.env
+ui-debug.log

@@ -1,24 +1,28 @@
 <script>
-  import { authStore } from '$lib/auth/firebaseAuth';
-  import { signInWithPopup } from 'firebase/auth';
-  import { auth, googleAuthProvider } from '$lib/firebase';
-  import { browser } from '$app/environment';
-  import { goto } from '$app/navigation';
+	import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+	import { goto } from '$app/navigation';
+	import { SESSION_COOKIE_NAME } from '$lib/consts';
+	import getAuth from '$lib/firebase/getAuth';
 
-  $: user = $authStore.user;
-  $: if (browser && user) {
-    const redirect = history.state?.referer || '/';
-    goto(redirect === '/login' ? '/' : redirect);
-  }
-
-  const login = () => {
-    signInWithPopup(auth, googleAuthProvider).catch((error) => {
-      console.error('Login error:', error.message);
-    });
-  };
+	const login = async () => {
+		try {
+			const userCredential = await signInWithPopup(getAuth(), new GoogleAuthProvider()).catch(
+				(error) => {
+					console.error(error.message);
+				}
+			);
+			if (!userCredential) {
+				throw new Error('Login failed');
+			}
+			const token = await userCredential.user.getIdToken();
+			goto(`/initSession?${SESSION_COOKIE_NAME}=${token}`);
+		} catch (e) {
+			console.error(e);
+		}
+	};
 </script>
 
 <div class="h-screen w-full flex justify-center items-center flex-col">
-  <h1 class="mb-8 text-3xl">Que comemos?</h1>
-  <button class="btn btn-primary" on:click={login}>Sign In with Google</button>
+	<h1 class="mb-8 text-3xl">Que comemos?</h1>
+	<button class="btn btn-primary" on:click={login}>Sign In with Google</button>
 </div>
