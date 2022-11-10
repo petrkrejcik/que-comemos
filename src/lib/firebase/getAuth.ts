@@ -20,7 +20,7 @@ const initialiseEmulators = (auth: Auth) => {
 		if (!emulatorsInitialised) {
 			console.info('Initialising Firebase Auth emulator');
 
-			connectAuthEmulator(auth, 'http://localhost:9099');
+			connectAuthEmulator(auth, 'http://127.0.0.1:9099');
 			emulatorsInitialised = true;
 		}
 	}
