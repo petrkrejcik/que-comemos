@@ -22,8 +22,49 @@ export const onUserCreate = auth.user().onCreate(async (user) => {
   }
   try {
     await admin.firestore().collection(`groups/${groupRef.id}/meals`).add({
-      name: 'Comida 1',
+      name: 'Lasaña',
       eatFor: 'lunch',
+      forChild: true,
+    });
+    await admin.firestore().collection(`groups/${groupRef.id}/meals`).add({
+      name: 'Paella',
+      eatFor: 'lunch',
+      forChild: true,
+    });
+    await admin.firestore().collection(`groups/${groupRef.id}/meals`).add({
+      name: 'Chilli con carne',
+      eatFor: 'lunch',
+      forChild: true,
+    });
+    await admin.firestore().collection(`groups/${groupRef.id}/meals`).add({
+      name: 'Improvisada',
+      eatFor: 'lunch',
+      forChild: true,
+    });
+    await admin.firestore().collection(`groups/${groupRef.id}/meals`).add({
+      name: 'Pescado',
+      eatFor: 'lunch',
+      forChild: true,
+      withSideDish: true,
+    });
+    await admin.firestore().collection(`groups/${groupRef.id}/meals`).add({
+      name: 'Patatas',
+      eatFor: 'side-dish',
+      forChild: true,
+    });
+    await admin.firestore().collection(`groups/${groupRef.id}/meals`).add({
+      name: 'Verdura',
+      eatFor: 'side-dish',
+      forChild: true,
+    });
+    await admin.firestore().collection(`groups/${groupRef.id}/meals`).add({
+      name: 'Bocadillo',
+      eatFor: 'dinner',
+      forChild: true,
+    });
+    await admin.firestore().collection(`groups/${groupRef.id}/meals`).add({
+      name: 'Jamón y queso',
+      eatFor: 'dinner',
       forChild: true,
     });
   } catch (e) {
