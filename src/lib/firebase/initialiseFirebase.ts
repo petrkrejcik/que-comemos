@@ -1,15 +1,13 @@
 import { getApp, initializeApp, type FirebaseApp, type FirebaseOptions } from 'firebase/app';
 import { browser } from '$app/environment';
 
-export let firebase: FirebaseApp;
-
+/**
+ * @todo rename to `getFirebase`.
+ * Or maybe keep it and return nothing.
+ */
 export default async () => {
-	if (firebase) {
-		return;
-	}
-
 	try {
-		getApp();
+		return getApp();
 	} catch (e) {
 		let config;
 		if (browser) {
@@ -17,8 +15,6 @@ export default async () => {
 		} else {
 			config = (await import('$lib/firebase/configServer')).default;
 		}
-		initializeApp(config);
+		return initializeApp(config);
 	}
-
-	return;
 };

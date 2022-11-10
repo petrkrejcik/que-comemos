@@ -5,6 +5,6 @@ import getWeekPlanServer from '$lib/weekPlan/getWeekPlan.server';
 export const load: PageServerLoad = async ({ locals }) => {
 	console.log('🛎 ', 'page.server.ts /week');
 	if (locals.user?.groupId) {
-		await getWeekPlanServer(getWeekId(), locals.user.groupId, locals.queryClient)
+		await getWeekPlanServer(getWeekId(), locals.user.groupId, locals.queryClient);
 	}
 };

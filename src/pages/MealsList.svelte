@@ -67,7 +67,7 @@
 	</div>
 	<div class="flex-none">
 		<div class="dropdown dropdown-end">
-			<div tabindex="0" class="btn btn-ghost rounded-btn">
+			<div class="btn btn-ghost rounded-btn">
 				<svg
 					focusable="false"
 					aria-hidden="true"
@@ -76,7 +76,7 @@
 					><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" /></svg
 				>
 			</div>
-			<ul tabindex="0" class="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52">
+			<ul class="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52">
 				<li>
 					<label class="cursor-pointer label">
 						<span class="label-text">Para niños</span>

@@ -17,13 +17,13 @@ export const load: PageServerLoad = async function load(event) {
 		const customToken = await getFirebaseAdmin()
 			.auth()
 			.createCustomToken(uid, { ...(groupId && { groupId }) });
-	
+
 		event.cookies.set(SESSION_COOKIE_NAME, customToken, {
 			path: `/`
 		});
-	
+
 		throw redirect(307, `/`);
 	} catch (e) {
-		throw e
+		throw e;
 	}
 };

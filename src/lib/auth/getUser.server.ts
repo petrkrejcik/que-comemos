@@ -1,4 +1,5 @@
 import getAuth from '$lib/firebase/getAuth';
+import { getErrorMessage } from '$lib/utils';
 import { signInWithCustomToken, type UserCredential } from 'firebase/auth';
 
 export const getUser = async (token?: string | null): Promise<UserCredential['user'] | false> => {
@@ -7,7 +8,7 @@ export const getUser = async (token?: string | null): Promise<UserCredential['us
 		const user = await signInWithCustomToken(getAuth(), token);
 		return user.user;
 	} catch (e) {
-		console.error(e);
+		console.error(`❌ ${getErrorMessage(e)}`);
 		return false;
 	}
 };

@@ -14,5 +14,5 @@ export interface WeekPlan {
 	d4: Day;
 	d5: Day;
 	d6: Day;
-	id: string
+	id: string;
 }

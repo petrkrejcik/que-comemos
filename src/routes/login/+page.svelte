@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 	import { goto } from '$app/navigation';
 	import { SESSION_COOKIE_NAME } from '$lib/consts';
@@ -6,16 +6,12 @@
 
 	const login = async () => {
 		try {
-			const userCredential = await signInWithPopup(getAuth(), new GoogleAuthProvider()).catch(
-				(error) => {
-					console.error(error.message);
-				}
-			);
+			const userCredential = await signInWithPopup(getAuth(), new GoogleAuthProvider());
 			if (!userCredential) {
 				throw new Error('Login failed');
 			}
 			const token = await userCredential.user.getIdToken();
-			goto(`/initSession?${SESSION_COOKIE_NAME}=${token}`);
+			goto(`/initSession?${SESSION_COOKIE_NAME}=${token}`, { invalidateAll: true });
 		} catch (e) {
 			console.error(e);
 		}
