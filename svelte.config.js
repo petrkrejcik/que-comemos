@@ -6,7 +6,7 @@ import path from 'path';
 export default {
 	preprocess: preprocess(),
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({ edge: true }),
 		alias: {
 			$pages: path.resolve('./src/pages'),
 			$components: path.resolve('./src/components'),
