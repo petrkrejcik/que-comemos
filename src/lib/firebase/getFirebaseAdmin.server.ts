@@ -1,8 +1,8 @@
-import firebaseAdmin, { app } from 'firebase-admin';
+import firebaseAdmin from 'firebase-admin';
 
 export const getFirebaseAdmin = () => {
 	try {
-		return app('admin');
+		return firebaseAdmin.app('admin');
 	} catch (e) {
 		const serviceAccount = JSON.parse(import.meta.env.VITE_FIREBASE_SERVICE_ACCOUNT_KEY as string);
 
