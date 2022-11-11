@@ -35,7 +35,6 @@
 		"daisyui": "^2.15.2",
 		"dayjs": "^1.11.3",
 		"firebase": "^9.13.0",
-		"firebase-admin": "^11.2.0",
-		"firebase-functions": "^4.0.2"
+		"firebase-admin": "^11.2.0"
 	}
 }

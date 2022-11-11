@@ -1,6 +1,6 @@
-import admin from 'firebase-admin';
+// import admin from 'firebase-admin';
 
-admin.initializeApp();
+// admin.initializeApp();
 
-export * from './auth';
-export * from './invite';
+// export * from './auth';
+// export * from './invite';

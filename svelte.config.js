@@ -1,12 +1,12 @@
 import preprocess from 'svelte-preprocess';
-import adapter from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-auto';
 import path from 'path';
 
 /** @type {import('@sveltejs/kit').Config} */
 export default {
 	preprocess: preprocess(),
 	kit: {
-		adapter: adapter({ edge: true }),
+		adapter: adapter(),
 		alias: {
 			$pages: path.resolve('./src/pages'),
 			$components: path.resolve('./src/components'),
