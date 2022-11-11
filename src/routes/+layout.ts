@@ -1,10 +1,11 @@
-import { browser } from '$app/environment';
 import { authStore } from '$lib/auth/authStore';
 import getAuth from '$lib/firebase/getAuth';
 import initialiseFirebase from '$lib/firebase/initialiseFirebase';
-import { hydrate, QueryClient } from '@sveltestack/svelte-query';
+import { QueryClient } from '@sveltestack/svelte-query';
 import { inMemoryPersistence, setPersistence, signInWithCustomToken } from 'firebase/auth';
 import type { LayoutLoad } from './$types';
+
+export const prerender = false;
 
 const queryClient = new QueryClient();
 
