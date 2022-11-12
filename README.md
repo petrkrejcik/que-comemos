@@ -2,6 +2,7 @@
 
 ## Progress
 
+- [ ] SSR returns wrong day highlighted. Once client is ready it's moved to correct day. Trying at 00:15.
 - [ ] When using prod DB and navigating between weeks, seems that SSR works but after page is loaded then the same query is performed again (because it's possible to see the skeletons)
 
 ## Start

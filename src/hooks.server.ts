@@ -48,7 +48,6 @@ export const handle: Handle = async function handle({ event, resolve }) {
 		};
 	}
 
-	console.log('🛎 ', 'hooks.server.ts before resolve');
 	const response = await resolve(event);
 
 	return response;
