@@ -1,29 +1,22 @@
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { getFirebaseAdmin } from '$lib/firebase/getFirebaseAdmin.server';
-import { SESSION_COOKIE_NAME } from '$lib/consts';
+import { ID_TOKEN_QUERY_PARAM, REFRESH_TOKEN_QUERY_PARAM } from '$lib/consts';
 
 export const load: PageServerLoad = async function load(event) {
 	const url = new URL(event.request.url);
-	// TODO: The query params should be called `idToken`
-	const token = url.searchParams.get(SESSION_COOKIE_NAME);
+	const idToken = url.searchParams.get(ID_TOKEN_QUERY_PARAM);
+	const refreshToken = url.searchParams.get(REFRESH_TOKEN_QUERY_PARAM);
 
-	if (!token) {
+	if (!idToken || !refreshToken) {
 		return {};
 	}
 
-	try {
-		const { uid, groupId } = await getFirebaseAdmin().auth().verifyIdToken(token);
-		const customToken = await getFirebaseAdmin()
-			.auth()
-			.createCustomToken(uid, { ...(groupId && { groupId }) });
+	event.cookies.set(ID_TOKEN_QUERY_PARAM, idToken, {
+		path: '/'
+	});
+	event.cookies.set(REFRESH_TOKEN_QUERY_PARAM, refreshToken, {
+		path: '/'
+	});
 
-		event.cookies.set(SESSION_COOKIE_NAME, customToken, {
-			path: `/`
-		});
-
-		throw redirect(307, `/`);
-	} catch (e) {
-		throw e;
-	}
+	throw redirect(307, '/');
 };

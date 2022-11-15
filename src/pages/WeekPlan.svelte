@@ -16,13 +16,11 @@
 	export let time: string = 'lunch';
 	let editingDay: string | number | null;
 	$: groupId = $authStore.groupId;
-	$: console.log('🛎 ', 'groupId', groupId);
 
 	$: firstDay = dayjs(week);
 	$: days = Array.from({ length: 7 }, (_, i) => dayjs(firstDay).add(i, 'day'));
 
 	$: weekPlan = getWeekPlan(week, groupId);
-	$: console.log('🛎 ', 'weekPlan client', $weekPlan.data);
 
 	const clearDay = async (day) => {
 		if (!groupId) {

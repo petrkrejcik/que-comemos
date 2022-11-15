@@ -21,7 +21,6 @@
 	$: mealKey = extra ? `${time}-${extra}` : time;
 	// To spread when saving; to highlight selected
 	$: weekPlan = getWeekPlan(week, groupId);
-	$: console.log('🛎 ', 'list', $weekPlan);
 
 	$: meals = getMeals(groupId, {
 		time: extra || time,

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 	import { goto } from '$app/navigation';
-	import { SESSION_COOKIE_NAME } from '$lib/consts';
+	import { ID_TOKEN_QUERY_PARAM, REFRESH_TOKEN_QUERY_PARAM } from '$lib/consts';
 	import getAuth from '$lib/firebase/getAuth';
 
 	const login = async () => {
@@ -11,7 +11,11 @@
 				throw new Error('Login failed');
 			}
 			const token = await userCredential.user.getIdToken();
-			goto(`/initSession?${SESSION_COOKIE_NAME}=${token}`, { invalidateAll: true });
+			const refershToken = await userCredential.user.refreshToken;
+			goto(
+				`/initSession?${ID_TOKEN_QUERY_PARAM}=${token}&${REFRESH_TOKEN_QUERY_PARAM}=${refershToken}`,
+				{ invalidateAll: true }
+			);
 		} catch (e) {
 			console.error(e);
 		}

@@ -6,8 +6,6 @@
 
 	export let data: PageData;
 
-	console.log('🛎 ', 'page.svelte /; hydrate', data);
-
 	/**
 	 * @todo It's annoying to run the hydration manually in every component.
 	 * Maybe create some hook `useHydration`.
