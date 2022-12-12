@@ -1,18 +1,14 @@
-import firebaseAdmin from 'firebase-admin';
+import { initializeApp, getApp, cert } from 'firebase-admin/app';
 
 export const getFirebaseAdmin = () => {
 	try {
-		return firebaseAdmin.app('admin');
+		return getApp('admin');
 	} catch (e) {
 		const serviceAccount = JSON.parse(import.meta.env.VITE_FIREBASE_SERVICE_ACCOUNT_KEY as string);
 
-		return firebaseAdmin.initializeApp(
+		return initializeApp(
 			{
-				credential: firebaseAdmin.credential.cert({
-					projectId: serviceAccount.project_id,
-					clientEmail: serviceAccount.client_email,
-					privateKey: serviceAccount.private_key
-				}),
+				credential: cert(serviceAccount),
 				databaseURL: 'https://que-comemos-hoy-5febf.firebaseio.com'
 			},
 			'admin'

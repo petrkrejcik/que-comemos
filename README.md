@@ -18,6 +18,8 @@ yarn dev # For usage with emulators - it's using FIREBASE_AUTH_EMULATOR_HOST=loc
 - [ ] Non-existing route throws error. Should redirect.
 - [ ] Add side-dish from week plan (do not hardcode if a dish has side-dish)
 - [ ] Filter "something with potatoes"
+- [ ] Disable focus state. [How](https://romansorin.com/blog/disabling-the-tailwind-input-ring)
+- [ ] Add `page.server.ts` for `routes/meals` in order to fetch the data on the server
 
 ## Features
 

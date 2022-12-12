@@ -1,16 +1,15 @@
 import type { Handle, HandleServerError } from '@sveltejs/kit';
-import { SESSION_COOKIE_NAME } from '$lib/consts';
 import dayjs from 'dayjs';
-import initialiseFirebase from '$lib/firebase/initialiseFirebase';
 import { QueryClient } from '@sveltestack/svelte-query';
 import { verifySession } from '$lib/auth/verifySession.server';
+import { getFirebaseAdmin } from '$lib/firebase/getFirebaseAdmin.server';
 
 dayjs.locale('es');
 
 const queryClient = new QueryClient();
 
 export const handle: Handle = async function handle({ event, resolve }) {
-	await initialiseFirebase();
+	getFirebaseAdmin();
 
 	event.locals.queryClient = queryClient;
 	const url = event.request.url;
@@ -18,9 +17,9 @@ export const handle: Handle = async function handle({ event, resolve }) {
 		.split('/')
 		.some((part) => part.startsWith('login') || part.startsWith('initSession'));
 
-	const user = await verifySession(event);
+	const isLogged = await verifySession(event);
 
-	if (user) {
+	if (isLogged) {
 		if (isLoginRoute) {
 			return Response.redirect(`${event.url.origin}`, 302);
 		}
